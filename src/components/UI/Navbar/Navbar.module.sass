@@ -1,0 +1,30 @@
+$LinkColor: #FFFFFF
+$NavbarBackground: #007ACC
+$NavbarMinHeight: 40px
+  
+.Navbar
+  background-color: $NavbarBackground
+
+  min-height: $NavbarMinHeight
+  width: 100%
+  
+  .LinksContainer
+    min-height: $NavbarMinHeight
+    height: 100%
+    max-width: 500px
+
+    padding: 5px
+    margin: 0 auto
+
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-around
+    align-items: center
+
+    .Navbar__link
+      display: block
+      color: $LinkColor
+      text-decoration: none
+      text-transform: lowercase
+      font-size: 1.5rem

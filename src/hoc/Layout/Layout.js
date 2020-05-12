@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import Navbar from '../../components/UI/Navbar/Navbar'
 
 class Layout extends Component {
   render() {
     return (
-      <div className="Layout">
-        <nav>
-          <NavLink to="/">Main</NavLink>
-          <NavLink to="/profile">Profile</NavLink>
-        </nav>
+      <>
+        <Navbar />
         <main>{this.props.children}</main>
-      </div>
+      </>
     )
   }
 }

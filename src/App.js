@@ -7,8 +7,9 @@ class App extends Component {
   render() {
     const routes = (
       <Switch>
-        <Route path="/" exact render={() => <h1>MAIN PAGE</h1>} />
-        <Route path="/profile" render={() => <h1>PROFILE PAGE</h1>} />
+        <Route path="/" exact render={() => <h1>Popular treds</h1>} />
+        <Route path="/public" exact render={() => <h1>Public treds</h1>} />
+        <Route path="/private" exact render={() => <h1>Private treds</h1>} />
       </Switch>
     )
 
