@@ -1,7 +1,10 @@
 {
   "name": "justtwitt",
-  "version": "0.1.0",
+  "version": "0.0.1",
+  "repository": "https://github.com/vsezol/justtwitt",
+  "author": "vsezol <vsevolod.zolotov02@mail.ru>",
   "private": true,
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
