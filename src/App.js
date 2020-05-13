@@ -3,11 +3,13 @@ import { Switch, Route } from 'react-router-dom'
 
 import Layout from './hoc/Layout/Layout'
 
+import PopularTreds from './components/class/PopularTreds/PopularTreds'
+
 class App extends Component {
   render() {
     const routes = (
       <Switch>
-        <Route path="/" exact render={() => <h1>Popular treds</h1>} />
+        <Route path="/" exact component={PopularTreds} />
         <Route path="/public" render={() => <h1>Public treds</h1>} />
         <Route path="/private" render={() => <h1>Private treds</h1>} />
       </Switch>

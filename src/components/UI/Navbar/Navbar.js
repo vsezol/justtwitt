@@ -29,8 +29,9 @@ const Navbar = () => {
         <Media queries={{ small: '(min-width: 576px)' }}>
           {matches => (
             <>
-              {links.map(link => (
+              {links.map((link, index) => (
                 <NavLink
+                  key={index}
                   exact
                   to={link.to}
                   className={classes['navbar__link']}
