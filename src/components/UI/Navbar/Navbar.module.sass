@@ -33,5 +33,11 @@ $links_container_max_width: 500px
       text-transform: lowercase
       font-size: $link_size
 
-      .navbar__link__alt
+      i
+        transition: 0.15s
+
+      &_active i
+        transform: rotate(-30deg)
+
+      &__alt
         display: inline-block

@@ -11,19 +11,19 @@ const Navbar = () => {
         <Media queries={{ small: '(min-width: 576px)' }}>
           {(matches) => (
             <>
-              <NavLink to="/" className={classes['navbar__link']}>
+              <NavLink exact to="/" className={classes['navbar__link']} activeClassName={classes['navbar__link_active']}>
                 <i className="fas fa-fire-alt"></i>
                 {matches.small && (
                   <span className="navbar__link__alt">&nbsp;popular</span>
                 )}
               </NavLink>
-              <NavLink to="/public" className={classes['navbar__link']}>
+              <NavLink to="/public" className={classes['navbar__link']} activeClassName={classes['navbar__link_active']}>
                 <i className="fas fa-rss-square"></i>
                 {matches.small && (
                   <span className="navbar__link__alt">&nbsp;public</span>
                 )}
               </NavLink>
-              <NavLink to="/private" className={classes['navbar__link']}>
+              <NavLink to="/private" className={classes['navbar__link']} activeClassName={classes['navbar__link_active']}>
                 <i className="fas fa-lock"></i>
                 {matches.small && (
                   <span className="navbar__link__alt">&nbsp;private</span>

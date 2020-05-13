@@ -8,8 +8,8 @@ class App extends Component {
     const routes = (
       <Switch>
         <Route path="/" exact render={() => <h1>Popular treds</h1>} />
-        <Route path="/public" exact render={() => <h1>Public treds</h1>} />
-        <Route path="/private" exact render={() => <h1>Private treds</h1>} />
+        <Route path="/public" render={() => <h1>Public treds</h1>} />
+        <Route path="/private" render={() => <h1>Private treds</h1>} />
       </Switch>
     )
 
