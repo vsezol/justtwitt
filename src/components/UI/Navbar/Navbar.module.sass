@@ -1,17 +1,21 @@
-$LinkColor: #FFFFFF
-$NavbarBackground: #007ACC
-$NavbarMinHeight: 40px
-  
-.Navbar
-  background-color: $NavbarBackground
+$link_color: #FFFFFF
+$link_size: 1.5rem
 
-  min-height: $NavbarMinHeight
+$navbar_background: #007ACC
+$navbar_min_height: 40px
+
+$links_container_max_width: 500px
+
+.navbar
+  background-color: $navbar_background
+
+  min-height: $navbar_min_height
   width: 100%
   
-  .LinksContainer
-    min-height: $NavbarMinHeight
+  .links-container
+    min-height: $navbar_min_height
     height: 100%
-    max-width: 500px
+    max-width: $links_container_max_width
 
     padding: 5px
     margin: 0 auto
@@ -22,9 +26,12 @@ $NavbarMinHeight: 40px
     justify-content: space-around
     align-items: center
 
-    .Navbar__link
+    .navbar__link
       display: block
-      color: $LinkColor
+      color: $link_color
       text-decoration: none
       text-transform: lowercase
-      font-size: 1.5rem
+      font-size: $link_size
+
+      .navbar__link__alt
+        display: inline-block
