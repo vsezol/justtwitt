@@ -4,10 +4,10 @@ import Navbar from '../../components/UI/Navbar/Navbar'
 class Layout extends Component {
   render() {
     return (
-      <>
+      <div className="App">
         <Navbar />
         <main>{this.props.children}</main>
-      </>
+      </div>
     )
   }
 }
