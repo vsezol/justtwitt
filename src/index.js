@@ -10,7 +10,7 @@ import { Provider } from 'react-redux'
 // root reducer
 import rootReducer from './store/reducers/rootReducer'
 
-import './index.css'
+import './index.sass'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App'
 

@@ -24,7 +24,7 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className={classes.Navbar}>
+    <nav className={classes.Navbar + ' fixed-top'}>
       <div className={classes.Navbar__LinksContainer}>
         <Media queries={{ small: '(min-width: 576px)' }}>
           {matches => (

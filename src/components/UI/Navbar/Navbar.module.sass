@@ -2,19 +2,20 @@ $link_color: #FFFFFF
 $link_size: 1.5rem
 
 $navbar_background: #007ACC
-$navbar_min_height: 40px
+$navbar_height: 50px
 
 $links_container_max_width: 576px
 
 .Navbar
   background-color: $navbar_background
 
-  min-height: $navbar_min_height
+  height: $navbar_height
+  max-height: $navbar_height
   width: 100%
   
   &__LinksContainer
-    min-height: $navbar_min_height
-    height: 100%
+    height: $navbar_height
+    max-height: $navbar_height
     max-width: $links_container_max_width
 
     padding: 5px
