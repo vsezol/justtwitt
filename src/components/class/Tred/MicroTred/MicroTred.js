@@ -1,6 +1,7 @@
 import React from 'react'
 import classes from './MicroTred.module.sass'
 import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 const MicroTred = props => {
   return (
@@ -10,21 +11,26 @@ const MicroTred = props => {
       <div
         className={
           classes.Tred__Stats +
-          ' d-inline-flex w-100 justify-content-end align-items-center'
+          ' d-flex w-100 justify-content-start align-items-md-center flex-wrap justify-content-md-end flex-md-row-reverse'
         }
       >
-        <button className={classes.Tred__ReadMore + ' btn btn-primary mr-auto'}>
+        <div className='d-flex flex-wrap'>
+          <span className={classes.Tred__Stats__Views + ' mr-2'}>
+            views:&nbsp;{props.tred.views}
+          </span>
+          <span className={classes.Tred__Stats__Id + ' mr-2'}>
+            id:&nbsp;{props.tred.id}
+          </span>
+          <span className={classes.Tred__Stats__Date + ' mr-2'}>
+            date:&nbsp;{props.tred.date.toDateString()}
+          </span>
+        </div>
+        <Button
+          className={classes.Tred__ReadMore + ' mt-2 mt-sm-0 mr-md-auto'}
+          variant='primary'
+        >
           <Link to='/private'>Read more</Link>
-        </button>
-        <span className={classes.Tred__Stats__Views + ' mr-2'}>
-          views: {props.tred.views}
-        </span>
-        <span className={classes.Tred__Stats__Id + ' mr-2'}>
-          id: {props.tred.id}
-        </span>
-        <span className={classes.Tred__Stats__Date + ' mr-2'}>
-          date: {props.tred.date.toDateString()}
-        </span>
+        </Button>
       </div>
     </div>
   )
