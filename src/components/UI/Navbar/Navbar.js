@@ -9,23 +9,23 @@ const Navbar = () => {
     {
       to: '/',
       text: 'popular',
-      iconClass: 'fa-fire-alt'
+      iconClasses: 'fas fa-fire-alt'
     },
     {
       to: '/public',
       text: 'public',
-      iconClass: 'fa-rss-square'
+      iconClasses: 'fas fa-rss-square'
     },
     {
       to: '/private',
       text: 'private',
-      iconClass: 'fa-lock'
+      iconClasses: 'fas fa-lock'
     }
   ]
 
   return (
-    <nav className={classes['navbar']}>
-      <div className={classes['links-container']}>
+    <nav className={classes.Navbar}>
+      <div className={classes.Navbar__LinksContainer}>
         <Media queries={{ small: '(min-width: 576px)' }}>
           {matches => (
             <>
@@ -34,12 +34,12 @@ const Navbar = () => {
                   key={index}
                   exact
                   to={link.to}
-                  className={classes['navbar__link']}
-                  activeClassName={classes['navbar__link_active']}
+                  className={classes.Navbar__Link}
+                  activeClassName={classes.Navbar__Link_active}
                 >
-                  <i className={'fas ' + link.iconClass}></i>
+                  <i className={link.iconClasses}></i>
                   {matches.small && (
-                    <span className='navbar__link__alt'>&nbsp;{link.text}</span>
+                    <span className={classes.Navbar__Link__Alt}>&nbsp;{link.text}</span>
                   )}
                 </NavLink>
               ))}

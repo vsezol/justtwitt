@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import rootReducer from './store/reducers/rootReducer'
 
 import './index.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App'
 
 // devTools

@@ -4,15 +4,15 @@ $link_size: 1.5rem
 $navbar_background: #007ACC
 $navbar_min_height: 40px
 
-$links_container_max_width: 500px
+$links_container_max_width: 576px
 
-.navbar
+.Navbar
   background-color: $navbar_background
 
   min-height: $navbar_min_height
   width: 100%
   
-  .links-container
+  &__LinksContainer
     min-height: $navbar_min_height
     height: 100%
     max-width: $links_container_max_width
@@ -26,18 +26,20 @@ $links_container_max_width: 500px
     justify-content: space-around
     align-items: center
 
-    .navbar__link
-      display: block
+  &__Link
+    display: block
+    color: $link_color
+    text-decoration: none!important
+    text-transform: lowercase
+    font-size: $link_size
+    &:hover
       color: $link_color
-      text-decoration: none
-      text-transform: lowercase
-      font-size: $link_size
 
-      i
-        transition: 0.15s
+    i
+      transition: 0.15s
 
-      &_active i
-        transform: rotate(-30deg)
+    &_active i
+      transform: rotate(-30deg)
 
-      &__alt
-        display: inline-block
+    &__alt
+      display: inline-block
