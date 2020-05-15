@@ -1,7 +1,6 @@
 import React from 'react'
 import classes from './MicroTred.module.sass'
 import { Link } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
 
 const MicroTred = props => {
   return (
@@ -16,21 +15,21 @@ const MicroTred = props => {
       >
         <div className='d-flex flex-wrap mb-2  mb-sm-0'>
           <span className={classes.Tred__Stats__Views + ' mr-2'}>
-            views:&nbsp;{props.tred.views}
+            <strong>views:</strong>&nbsp;{props.tred.views}
           </span>
           <span className={classes.Tred__Stats__Id + ' mr-2'}>
-            id:&nbsp;{props.tred.id}
+            <strong>id:</strong>&nbsp;{props.tred.id}
           </span>
           <span className={classes.Tred__Stats__Date + ' mr-2'}>
-            date:&nbsp;{props.tred.date.toDateString()}
+            <strong>date:</strong>&nbsp;{props.tred.date.toDateString()}
           </span>
         </div>
-        <Button
-          className={classes.Tred__ReadMore + ' mr-md-auto'}
-          variant='primary'
+        <Link
+          to='/private'
+          className={classes.Tred__ReadMore + ' mr-md-auto btn btn-primary'}
         >
-          <Link to='/private'>Read more</Link>
-        </Button>
+          Read more
+        </Link>
       </div>
     </div>
   )

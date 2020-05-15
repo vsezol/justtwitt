@@ -1,6 +1,5 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import Media from 'react-media'
 
 import classes from './Navbar.module.sass'
 
@@ -26,35 +25,23 @@ const Navbar = () => {
   return (
     <nav className={classes.Navbar + ' fixed-top'}>
       <div className={classes.Navbar__LinksContainer}>
-        <Media queries={{ small: '(min-width: 576px)' }}>
-          {matches => (
-            <>
-              {links.map((link, index) => (
-                <NavLink
-                  key={index}
-                  exact
-                  to={link.to}
-                  className={classes.Navbar__Link}
-                  activeClassName={classes.Navbar__Link_active}
-                >
-                  <i className={link.iconClasses}></i>
-                  {matches.small && (
-                    <span className={classes.Navbar__Link__Alt}>&nbsp;{link.text}</span>
-                  )}
-                </NavLink>
-              ))}
-            </>
-          )}
-        </Media>
+        {links.map((link, index) => (
+          <NavLink
+            key={index}
+            exact
+            to={link.to}
+            className={classes.Navbar__Link}
+            activeClassName={classes.Navbar__Link_active}
+          >
+            <i className={link.iconClasses}></i>
+            <span className={classes.Navbar__Link__Alt + ' d-none d-md-block'}>
+              &nbsp;{link.text}
+            </span>
+          </NavLink>
+        ))}
       </div>
     </nav>
   )
 }
 
 export default Navbar
-
-// extraSmall: '(max-width: 575px)',
-// small: '(max-width: 767px)',
-// medium: '(max-width: 991px)',
-// large: '(max-width: 1199px)',
-// extraLarge: '(min-width: 1200px)',
