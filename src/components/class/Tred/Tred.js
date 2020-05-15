@@ -4,11 +4,9 @@ import { connect } from 'react-redux'
 
 import { getTred } from '../../../store/actions/tredActionCreators'
 
-import axios from 'axios'
-
 class Tred extends Component {
 
-  componentDidMount() {
+  async componentDidMount() {
     const {board, id} = this.props.match.params
     this.props.getTred(board, id)
   }
@@ -35,7 +33,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTred: (board, id) => dispatch(getTred(board, id))
+  getTred: (board, id) => dispatch(getTred(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tred)

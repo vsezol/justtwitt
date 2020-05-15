@@ -17,11 +17,11 @@ const errorGetTred = error => ({
   error
 })
 
-export const getTred = (board, id) => async dispatch => {
-  dispatch(startGetTred)
+export const getTred = id => async dispatch => {
+  dispatch(startGetTred())
 
   try {
-    const response = await axios.get(`/public/${board}/${id}.json`)
+    const response = await axios.get(`/treds/public/${id}.json`)
     console.log(response.data)
   } catch (error) {}
 }
