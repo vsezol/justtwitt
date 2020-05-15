@@ -28,16 +28,21 @@ $links_container_max_width: 576px
     align-items: center
 
   &__Link
-    display: block
+    display: flex
+    justify-content: center
+    align-items: center
     color: $link_color
     text-decoration: none!important
     text-transform: lowercase
     font-size: $link_size
+    height: 100%
+    flex-grow: 1
     &:hover
       color: $link_color
 
     i
       transition: 0.15s
+      font-size: 1.7rem
 
     &_active i
       transform: rotate(-30deg)

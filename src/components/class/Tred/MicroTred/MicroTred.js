@@ -11,10 +11,10 @@ const MicroTred = props => {
       <div
         className={
           classes.Tred__Stats +
-          ' d-flex w-100 justify-content-start align-items-md-center flex-wrap justify-content-md-end flex-md-row-reverse'
+          ' d-flex w-100 justify-content-start align-items-center flex-wrap justify-content-md-end flex-md-row-reverse'
         }
       >
-        <div className='d-flex flex-wrap'>
+        <div className='d-flex flex-wrap mb-2  mb-sm-0'>
           <span className={classes.Tred__Stats__Views + ' mr-2'}>
             views:&nbsp;{props.tred.views}
           </span>
@@ -26,7 +26,7 @@ const MicroTred = props => {
           </span>
         </div>
         <Button
-          className={classes.Tred__ReadMore + ' mt-2 mt-sm-0 mr-md-auto'}
+          className={classes.Tred__ReadMore + ' mr-md-auto'}
           variant='primary'
         >
           <Link to='/private'>Read more</Link>
