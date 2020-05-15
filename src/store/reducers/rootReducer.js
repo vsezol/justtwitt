@@ -1,3 +1,7 @@
 import { combineReducers } from 'redux'
 
-export default combineReducers({})
+import popularTredsReducer from './popularTredsReducer'
+
+export default combineReducers({
+  popularTreds: popularTredsReducer
+})
