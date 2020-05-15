@@ -21,7 +21,7 @@ const MicroTred = props => {
             <strong>id:</strong>&nbsp;{props.tred.id}
           </span>
           <span className={classes.Tred__Stats__Date + ' mr-2'}>
-            <strong>date:</strong>&nbsp;{props.tred.date.toDateString()}
+            <strong>date:</strong>&nbsp;{props.tred.date}
           </span>
         </div>
         <Link
