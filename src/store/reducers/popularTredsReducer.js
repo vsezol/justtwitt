@@ -6,7 +6,8 @@ import {
 
 const initialState = {
   loading: true,
-  popularTreds: null
+  treds: null,
+  error: null
 }
 
 export default (state = initialState, action) => {
@@ -14,7 +15,7 @@ export default (state = initialState, action) => {
     case START_GET_POPULAR_TREDS:
       return {...state, loading: true}
     case SUCCESS_GET_POPULAR_TREDS:
-      return {...state, loading: false, popularTreds: action.treds}
+      return {...state, loading: false, treds: action.treds}
     case ERROR_GET_POPULAR_TREDS:
       return {...state, loading: false, error: action.error}
     default:
