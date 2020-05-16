@@ -19,9 +19,11 @@ const errorGetTred = error => ({
 
 export const getTred = id => async dispatch => {
   dispatch(startGetTred())
-
   try {
     const response = await axios.get(`/treds/public/${id}.json`)
-    console.log(response.data)
-  } catch (error) {}
+    const tred = response.data
+    dispatch(successGetTred(tred, id))
+  } catch (error) {
+    dispatch(errorGetTred(error))
+  }
 }

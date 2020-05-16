@@ -5,7 +5,7 @@ import { getPopularTreds } from '../../../store/actions/popularTredsActionCreato
 
 import { Container } from 'react-bootstrap'
 import MicroTred from '../Tred/MicroTred/MicroTred'
-import Loader from '../../UI/Loader/Loader'
+import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 
 import classes from './PopularTreds.module.sass'
 
@@ -27,9 +27,7 @@ class PopularTreds extends Component {
             </h1>
           </div>
           {this.props.loading ? (
-            <div className={classes.LoaderContainer}>
-              <Loader />
-            </div>
+            <LoaderContainer />
           ) : (
             this.renderTreds(this.props.treds)
           )}
