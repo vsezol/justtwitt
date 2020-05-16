@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from './MicroTred.module.sass'
+import classes from '../Tred.module.sass'
 import { Link } from 'react-router-dom'
 
 const MicroTred = props => {

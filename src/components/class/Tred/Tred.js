@@ -3,8 +3,11 @@ import { connect } from 'react-redux'
 import propTypes from 'prop-types'
 import { Container } from 'react-bootstrap'
 
-import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 import { getTred } from '../../../store/actions/tredActionCreators'
+
+import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
+import PhotoGallery from '../../UI/PhotoGallery/PhotoGallery';
+import classes from './Tred.module.sass'
 
 class Tred extends Component {
   async componentDidMount() {
@@ -12,21 +15,32 @@ class Tred extends Component {
     this.props.getTred(id)
   }
 
-  renderTred = () => (
-    <Container>
-      <h1>{this.props.title}</h1>
-      <p>{this.props.text}</p>
-      <p>{this.props.board}</p>
-      <p>{this.props.views}</p>
-      {/* {this.props.comments.map(comment => (
-        <p>{comment}</p>
-      ))} */}
-    </Container>
-  )
+  renderTred = () => {
+    return (
+      <div className={classes.Tred + ' p-4 rounded'}>
+        <div className='mb-2'>
+          <h1 className={classes.Tred__Title}>{this.props.title}</h1>
+        </div>
+        <div className='mb-2'>
+          <p className={classes.Tred__Text + ' m-0'}>{this.props.text}</p>
+        </div>
+        <PhotoGallery imgs={this.props.imgs}/>
+        {this.props.comments.map((comment, key) => (
+          <p key={key}>
+            {comment.id} {comment.text}
+          </p>
+        ))}
+        <p>{this.props.board}</p>
+        <p>{this.props.views}</p>
+      </div>
+    )
+  }
 
   render() {
     return (
-      <div>{this.props.loading ? <LoaderContainer /> : this.renderTred()}</div>
+      <Container className='mt-4 mb-4 pt-4'>
+        {this.props.loading ? <LoaderContainer /> : this.renderTred()}
+      </Container>
     )
   }
 }
