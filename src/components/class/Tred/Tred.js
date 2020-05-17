@@ -24,6 +24,9 @@ class Tred extends Component {
         <div className='mb-2'>
           <p className={classes.Tred__Text + ' m-0'}>{this.props.text}</p>
         </div>
+        <div className='mb-2'>
+          <h2 className={classes.Tred__GalleryTitle}>Pictures</h2>
+        </div>
         <PhotoGallery imgs={this.props.imgs}/>
         {/* {this.props.comments.map((comment, key) => (
           <p key={key}>
