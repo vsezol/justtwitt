@@ -4,12 +4,17 @@ import { Image } from 'react-bootstrap'
 
 class PhotoGallery extends Component {
   state = {
+    // состояние модального окна неактив/актив
     isModal: false,
+    // src модального окна
     modalImageSrc: null,
+    // состояние галлереи скрыта/раскрыта
     isFullGallery: false,
-    defaultImgsCount: 3
+    // дефолтное кол-во изображений для нераскрытой галлереи
+    defaultCount: 3
   }
 
+  // при нажатии на изображение сообщает, что модальное окно активно
   onOpenImage(event) {
     const src = event.target.src
     this.setState(() => ({
@@ -18,6 +23,7 @@ class PhotoGallery extends Component {
     }))
   }
 
+  // при нажатии на любую часть модального окна делает его неактивным
   onCloseImage() {
     this.setState(() => ({
       isModal: false,
@@ -25,6 +31,7 @@ class PhotoGallery extends Component {
     }))
   }
 
+  // рендерит модальное окно
   renderModalImage() {
     return (
       <div className={classes.ModalOverlay} onClick={() => this.onCloseImage()}>
@@ -39,8 +46,9 @@ class PhotoGallery extends Component {
     )
   }
 
-  renderGallery(imgs, count) {
-    return [...imgs].splice(0, count).map((imgSrc, key) => (
+  // рендерит галлерею
+  renderGallery(imgs) {
+    return imgs.map((imgSrc, key) => (
       <div key={key} className={classes.PhotoGallery__Item + ' p-1'}>
         <Image
           index={key}
@@ -53,43 +61,53 @@ class PhotoGallery extends Component {
     ))
   }
 
+  // при нажатии на кнопку + раскрывает галлерею
   onClickMoreImages() {
-    this.setState((state) => ({
+    this.setState(state => ({
       isFullGallery: !state.isFullGallery
     }))
   }
 
-  renderMoreImages() {
+  // рендерит кнопку +
+  renderMoreImages(hiddenCount) {
     const plusStyles = ['fas fa-plus-circle', classes.MoreImages]
-    const countStyles = [classes.PhotoGallery__Item__Image_Fake__Count]
+    const countStyles = [classes.PhotoGallery__Item__Image_Fake__Count, 'ml-1']
     if (this.state.isFullGallery) {
       plusStyles.push(classes.MoreImages_Active)
       countStyles.push('d-none')
     }
 
     return (
-      <div className={classes.PhotoGallery__Item + ' p-1'} onClick={() => this.onClickMoreImages()}>
+      <div
+        className={classes.PhotoGallery__Item + ' p-1'}
+        onClick={() => this.onClickMoreImages()}
+      >
         <div className={classes.PhotoGallery__Item__Image_Fake + ' rounded'}>
           <i className={plusStyles.join(' ')}></i>
-          
-          <span
-            className={countStyles.join(' ') + ' ml-1'}
-          >
-            {this.props.imgs.length - this.state.defaultImgsCount}
-          </span>
+          <span className={countStyles.join(' ')}>{hiddenCount}</span>
         </div>
       </div>
     )
   }
 
+  // основной рендер компонента
   render() {
+    let imgs = this.props.imgs
+    const visibleCount = this.state.defaultCount
+    const hiddenCount = imgs.length - visibleCount
+
+    if (!this.state.isFullGallery) imgs = [...imgs].splice(0, visibleCount)
+
     return (
-      <div className={classes.PhotoGallery + ' w-100 d-flex flex-wrap justify-content-center'}>
+      <div
+        className={
+          classes.PhotoGallery +
+          ' w-100 d-flex flex-wrap justify-content-center'
+        }
+      >
         {this.state.isModal ? this.renderModalImage() : null}
-        {!this.state.isFullGallery
-          ? this.renderGallery(this.props.imgs, this.state.defaultImgsCount)
-          : this.renderGallery(this.props.imgs, this.props.imgs.length)}
-        {this.renderMoreImages()}
+        {this.renderGallery(imgs)}
+        {this.renderMoreImages(hiddenCount)}
       </div>
     )
   }

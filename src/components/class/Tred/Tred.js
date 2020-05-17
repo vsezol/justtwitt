@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap'
 import { getTred } from '../../../store/actions/tredActionCreators'
 
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
-import PhotoGallery from '../../UI/PhotoGallery/PhotoGallery';
+import PhotoGallery from '../PhotoGallery/PhotoGallery'
 import classes from './Tred.module.sass'
 
 class Tred extends Component {
@@ -25,13 +25,13 @@ class Tred extends Component {
           <p className={classes.Tred__Text + ' m-0'}>{this.props.text}</p>
         </div>
         <PhotoGallery imgs={this.props.imgs}/>
-        {this.props.comments.map((comment, key) => (
+        {/* {this.props.comments.map((comment, key) => (
           <p key={key}>
             {comment.id} {comment.text}
           </p>
         ))}
         <p>{this.props.board}</p>
-        <p>{this.props.views}</p>
+        <p>{this.props.views}</p> */}
       </div>
     )
   }

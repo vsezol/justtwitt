@@ -1,35 +1,42 @@
+// блок галлереи
 .PhotoGallery
   display: block
+  // элемент
   &__Item
     min-width: 80px
     min-height: 80px
     width: 50%
     max-width: 200px
     max-height: 200px
-
+    transition: all 5s
+    // элемент изображение
     &__Image, &__Image_Fake
       cursor: pointer
       width: 100%
       height: 100%
       object-fit: cover
-    
+    // модификатор изображения делает его пустым
     &__Image_Fake
       display: flex
       justify-content: center
       align-items: center
       background-color: #007ACC
-
+      // элемент фейкового изображения
       &__Count
         font-size: 2.5rem
         color: white
 
+// блок кнопка +
 .MoreImages
   color: white
   font-size: 2.5rem
   transition: all 0.25s
+  // модификатор (поворот)
   &_Active
     transform: rotate(-45deg)
 
+
+// блок модального окна
 .ModalOverlay
   position: fixed
   display: flex
@@ -42,6 +49,7 @@
   width: 100%
   height: 100%
 
+  // элемент крестик
   &__Close
     position: absolute
     top: 30px
@@ -52,6 +60,7 @@
     &:hover
       color: rgba(255, 255, 255, 1.0)
 
+  // элемент обертка
   &__Wrapper
     max-height: 90%
     height: 90%
@@ -60,6 +69,7 @@
     justify-content: center
     align-items: center
 
+    // элемент изрображение
     &__Image
       cursor: pointer
       width: 100%
