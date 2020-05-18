@@ -1,28 +1,29 @@
+// react
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import propTypes from 'prop-types'
-import { Container, Button } from 'react-bootstrap'
 
+// redux
+import { connect } from 'react-redux'
 import { getTred } from '../../../store/actions/tredActionCreators'
 
+// rb
+import { Container } from 'react-bootstrap'
+
+// components
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 import PhotoGallery from '../PhotoGallery/PhotoGallery'
 import Comment from '../../func/Comment/Comment'
 import Stats from '../../func/Stats/Stats'
 import CreateComment from '../CreateComment/CreateComment'
 
+// styles
 import classes from './Tred.module.sass'
 
+// main component
 class Tred extends Component {
-  state = { isAddComment: false }
-
   async componentDidMount() {
     const id = this.props.match.params.id
     this.props.getTred(id)
-  }
-
-  openModalCreateComment() {
-    this.setState(() => ({ isAddComment: true }))
   }
 
   renderTred = () => {
@@ -77,13 +78,7 @@ class Tred extends Component {
             ))}
           </div>
           <div className='d-flex justify-content-center'>
-            <Button
-              className={classes.Tred__AddCommentBtn}
-              variant='primary'
-              onClick={this.openModalCreateComment.bind(this)}
-            >
-              <i className='fas fa-plus-circle'></i>
-            </Button>
+            <CreateComment />
           </div>
         </div>
       </div>
@@ -94,7 +89,6 @@ class Tred extends Component {
     return (
       <Container className='mt-4 mb-4 pt-4'>
         {this.props.loading ? <LoaderContainer /> : this.renderTred()}
-        <CreateComment />
       </Container>
     )
   }
