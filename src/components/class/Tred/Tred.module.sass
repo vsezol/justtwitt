@@ -1,19 +1,21 @@
 $def_color: #007ACC
 $border_color: #E3E4E8
+$def_border: $border_color 1px solid
 
 $title_size: 1.4rem
 $gallery_title_size: 1.2rem
 $text_size: 1rem
 
 .Tred
-  background-color: white
-  border: $border_color 1px solid
+  &__Container
+    background-color: white
+    border: $def_border
 
   &__Title
     font-size: $title_size
     font-family: 'Roboto-BoldItalic'
     margin: 0
-  
+
   &__GalleryTitle
     font-size: $gallery_title_size
     text-align: center

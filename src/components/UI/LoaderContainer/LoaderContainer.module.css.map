@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,gBAAgB,CAAC;EACf,QAAQ,EAAE,QAAQ;EAClB,IAAI,EAAE,kBAAkB;EACxB,GAAG,EAAE,kBAAkB;EACvB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;CAAG",
+    "sources": [
+        "LoaderContainer.module.sass"
+    ],
+    "names": [],
+    "file": "LoaderContainer.module.css"
+}

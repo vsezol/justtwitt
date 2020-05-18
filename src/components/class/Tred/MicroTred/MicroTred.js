@@ -7,7 +7,13 @@ const MicroTred = props => {
     props.tred.text.slice(0, 200).split(' ').slice(0, -1).join(' ') + '...'
 
   return (
-    <div className={classes.Tred + ' mb-4 p-4 rounded'}>
+    <div
+      className={[
+        classes.Tred,
+        classes.Tred__Container,
+        'mb-4 p-4 rounded'
+      ].join(' ')}
+    >
       <h2 className={classes.Tred__Title + ' mb-2'}>{props.tred.title}</h2>
       <div className={classes.Tred__Text + ' mb-2'}>
         {limitText(props.tred.text)}

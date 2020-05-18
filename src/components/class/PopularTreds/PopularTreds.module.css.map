@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACG,AAAD,oBAAQ,CAAC;EACP,SAAS,EAAE,MAAM;CAAG",
+    "sources": [
+        "PopularTreds.module.sass"
+    ],
+    "names": [],
+    "file": "PopularTreds.module.css"
+}
