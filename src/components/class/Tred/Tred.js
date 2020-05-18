@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import propTypes from 'prop-types'
-import { Container } from 'react-bootstrap'
+import { Container, Button, Modal } from 'react-bootstrap'
 
 import { getTred } from '../../../store/actions/tredActionCreators'
 
@@ -13,9 +13,15 @@ import Stats from '../../func/Stats/Stats'
 import classes from './Tred.module.sass'
 
 class Tred extends Component {
+  state = { isAddComment: false }
+
   async componentDidMount() {
     const id = this.props.match.params.id
     this.props.getTred(id)
+  }
+
+  openModalCreateComment() {
+    this.setState(() => ({ isAddComment: true }))
   }
 
   renderTred = () => {
@@ -59,23 +65,35 @@ class Tred extends Component {
 
         {/* tred comments */}
         <div className={tredContainerClasses}>
-          {this.props.comments.map((comment, key) => (
-            <Comment
-              len={this.props.comments.length}
-              id={comment.id}
-              text={comment.text}
-              key={key}
-            />
-          ))}
+          <div className={classes.Tred__Comments}>
+            {this.props.comments.map((comment, key) => (
+              <Comment
+                len={this.props.comments.length}
+                id={comment.id}
+                text={comment.text}
+                key={key}
+              />
+            ))}
+          </div>
+          <div className='d-flex justify-content-center'>
+            <Button
+              className={classes.Tred__AddCommentBtn}
+              variant='primary'
+              onClick={this.openModalCreateComment.bind(this)}
+            >
+              <i className='fas fa-plus-circle'></i>
+            </Button>
+          </div>
         </div>
       </div>
     )
   }
-
+  
   render() {
     return (
       <Container className='mt-4 mb-4 pt-4'>
         {this.props.loading ? <LoaderContainer /> : this.renderTred()}
+        {this.state.isAddComment ? <h1>Add comment</h1> : null}
       </Container>
     )
   }

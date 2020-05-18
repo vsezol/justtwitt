@@ -4,7 +4,6 @@ import avatarImg from './avatar.svg'
 import classes from './Comment.module.sass'
 
 const Comment = props => {
-  console.log(props)
   return (
     <>
       <Media>
