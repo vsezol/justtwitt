@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import propTypes from 'prop-types'
-import { Container, Button, Modal } from 'react-bootstrap'
+import { Container, Button } from 'react-bootstrap'
 
 import { getTred } from '../../../store/actions/tredActionCreators'
 
@@ -9,6 +9,7 @@ import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 import PhotoGallery from '../PhotoGallery/PhotoGallery'
 import Comment from '../../func/Comment/Comment'
 import Stats from '../../func/Stats/Stats'
+import CreateComment from '../CreateComment/CreateComment'
 
 import classes from './Tred.module.sass'
 
@@ -40,11 +41,11 @@ class Tred extends Component {
             ' d-flex justify-content-between flex-wrap align-items-center'
           }
         >
-          <div className='pb-1'>
+          <div className='pb-1 pb-md-0'>
             <h1 className={classes.Tred__Title}>{this.props.title}</h1>
           </div>
 
-          <div className='d-flex flex-wrap pb-1'>
+          <div className='d-flex flex-wrap pb-1 pb-md-0'>
             <Stats
               views={this.props.views}
               board={this.props.board}
@@ -88,12 +89,12 @@ class Tred extends Component {
       </div>
     )
   }
-  
+
   render() {
     return (
       <Container className='mt-4 mb-4 pt-4'>
         {this.props.loading ? <LoaderContainer /> : this.renderTred()}
-        {this.state.isAddComment ? <h1>Add comment</h1> : null}
+        <CreateComment />
       </Container>
     )
   }
