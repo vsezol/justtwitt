@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import propTypes from 'prop-types'
-import { Container, Media } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 import { getTred } from '../../../store/actions/tredActionCreators'
 
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 import PhotoGallery from '../PhotoGallery/PhotoGallery'
 import Comment from '../../func/Comment/Comment'
+import Stats from '../../func/Stats/Stats'
 
 import classes from './Tred.module.sass'
 
@@ -18,25 +19,46 @@ class Tred extends Component {
   }
 
   renderTred = () => {
+    // классы для контейнеров в треде
+    const tredContainerClasses = [
+      classes.Tred__Container,
+      'p-4 rounded mb-2'
+    ].join(' ')
+
     return (
       <div className={classes.Tred}>
         {/* tred title */}
-        <div className={classes.Tred__Container + ' p-4 rounded mb-2'}>
-          <h1 className={classes.Tred__Title}>{this.props.title}</h1>
+        <div
+          className={
+            tredContainerClasses +
+            ' d-flex justify-content-between flex-wrap align-items-center'
+          }
+        >
+          <div className='pb-1'>
+            <h1 className={classes.Tred__Title}>{this.props.title}</h1>
+          </div>
+
+          <div className='d-flex flex-wrap pb-1'>
+            <Stats
+              views={this.props.views}
+              board={this.props.board}
+              date={this.props.date}
+            />
+          </div>
         </div>
 
         {/* tred text */}
-        <div className={classes.Tred__Container + ' p-4 rounded mb-2'}>
+        <div className={tredContainerClasses}>
           <p className={classes.Tred__Text + ' m-0'}>{this.props.text}</p>
         </div>
 
         {/* tred gallery */}
-        <div className={classes.Tred__Container + ' p-4 rounded mb-2'}>
+        <div className={tredContainerClasses}>
           <PhotoGallery imgs={this.props.imgs} />
         </div>
 
         {/* tred comments */}
-        <div className={classes.Tred__Container + ' p-4 rounded mb-2'}>
+        <div className={tredContainerClasses}>
           {this.props.comments.map((comment, key) => (
             <Comment
               len={this.props.comments.length}
@@ -45,10 +67,6 @@ class Tred extends Component {
               key={key}
             />
           ))}
-        </div>
-
-        <div className={classes.CreateComment}>
-
         </div>
       </div>
     )
@@ -94,9 +112,3 @@ Tred.propTypes = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tred)
-
-/* 
-<div className='mb-2'>
-  <h2 className={classes.Tred__GalleryTitle}>Pictures</h2>
-</div> 
-*/

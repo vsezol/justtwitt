@@ -2,6 +2,8 @@ import React from 'react'
 import classes from '../Tred.module.sass'
 import { Link } from 'react-router-dom'
 
+import Stats from '../../../func/Stats/Stats'
+
 const MicroTred = props => {
   const limitText = text =>
     props.tred.text.slice(0, 200).split(' ').slice(0, -1).join(' ') + '...'
@@ -25,15 +27,11 @@ const MicroTred = props => {
         }
       >
         <div className='d-flex flex-wrap mb-2  mb-sm-0'>
-          <span className={classes.Tred__Stats__Views + ' mr-2'}>
-            <strong>views:</strong>&nbsp;{props.tred.views}
-          </span>
-          <span className={classes.Tred__Stats__Id + ' mr-2'}>
-            <strong>board:</strong>&nbsp;{props.tred.board}
-          </span>
-          <span className={classes.Tred__Stats__Date + ' mr-2'}>
-            <strong>date:</strong>&nbsp;{props.tred.date}
-          </span>
+          <Stats
+            views={props.tred.views}
+            board={props.tred.board}
+            date={props.tred.date}
+          />
         </div>
         <Link
           to={`/public/${props.tred.board}/${props.tred.id}/`}
