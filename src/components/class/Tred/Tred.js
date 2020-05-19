@@ -15,7 +15,7 @@ import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 import PhotoGallery from '../../func/PhotoGallery/PhotoGallery'
 import Comment from '../../func/Comment/Comment'
 import Stats from '../../func/Stats/Stats'
-import CreateComment from '../CreateComment/CreateComment'
+import CreateComment from '../../func/CreateComment/CreateComment'
 
 // styles
 import classes from './Tred.module.sass'
@@ -78,9 +78,9 @@ class Tred extends Component {
               />
             ))}
           </div>
-          <div className='d-flex justify-content-center'>
-            <CreateComment />
-          </div>
+        </div>
+        <div className={tredContainerClasses + ' d-flex align-items-center'}>
+          <CreateComment />
         </div>
       </div>
     )
