@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AACG,AAAD,YAAK,CAAC;EACJ,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,mBAAmB;CAAG;;AACpC,AAAD,cAAO,CAAC;EACN,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,gBAAgB;CAAG",
-    "sources": [
-        "Comment.module.sass"
-    ],
-    "names": [],
-    "file": "Comment.module.css"
-}
