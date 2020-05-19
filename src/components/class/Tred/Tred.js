@@ -11,7 +11,8 @@ import { Container } from 'react-bootstrap'
 
 // components
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
-import PhotoGallery from '../PhotoGallery/PhotoGallery'
+// import PhotoGallery from '../PhotoGallery/PhotoGallery'
+import PhotoGallery from '../../func/PhotoGallery/PhotoGallery'
 import Comment from '../../func/Comment/Comment'
 import Stats from '../../func/Stats/Stats'
 import CreateComment from '../CreateComment/CreateComment'
