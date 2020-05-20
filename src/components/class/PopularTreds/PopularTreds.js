@@ -12,10 +12,13 @@ import classes from './PopularTreds.module.sass'
 class PopularTreds extends Component {
   componentDidMount = async () => this.props.getPopularTreds()
 
-  renderTreds = treds =>
-    Object.keys(treds).map((id, index) => (
-      <MicroTred key={index} tred={{ ...treds[id], id }} />
-    ))
+  renderTreds = treds => {
+    return treds.map((tred, index) => {
+      const id = tred[0]
+      const data = tred[1]
+      return <MicroTred key={index} tred={{ id, ...data }} />
+    })
+  }
 
   render() {
     return (
