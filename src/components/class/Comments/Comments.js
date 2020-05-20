@@ -12,24 +12,35 @@ import { Container } from 'react-bootstrap'
 
 import CreateComment from '../../func/CreateComment/CreateComment'
 
+// import database from '../../../firebase'
+
 class Comments extends Component {
   componentDidMount() {
-    const id = this.props.match.params.id
-    this.props.getComments(id)
+    const tredId = this.props.match.params.id
+    this.props.getComments(tredId)
   }
 
   renderComments = () => {
     const comments = this.props.comments
     const len = Object.keys(comments).length
-    return Object.keys(comments).map((id, index) => (
+    return comments.map((comment, index) => (
       <Comment
-        id={id}
+        id={index}
         index={index}
         key={index}
         len={len}
-        text={comments[id].text}
+        text={comment.text}
       />
     ))
+    // return Object.keys(comments).map((id, index) => (
+    //   <Comment
+    //     id={id}
+    //     index={index}
+    //     key={index}
+    //     len={len}
+    //     text={comments[id].text}
+    //   />
+    // ))
   }
 
   addCommentHamdler(text) {
