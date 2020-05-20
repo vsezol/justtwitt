@@ -4,7 +4,7 @@ import propTypes from 'prop-types'
 
 // redux
 import { connect } from 'react-redux'
-import { getTred } from '../../../store/actions/tredActionCreators'
+import { getTred, addComment } from '../../../store/actions/tredActionCreators'
 
 // rb
 import { Container } from 'react-bootstrap'
@@ -25,6 +25,18 @@ class Tred extends Component {
   async componentDidMount() {
     const id = this.props.match.params.id
     this.props.getTred(id)
+  }
+
+  renderComments = () => {
+    const comments = this.props.comments
+    return Object.keys(comments).map((id, key) => (
+      <Comment
+        len={comments.length}
+        id={id}
+        text={comments[id].text}
+        key={key}
+      />
+    ))
   }
 
   renderTred = () => {
@@ -67,20 +79,16 @@ class Tred extends Component {
         </div>
 
         {/* tred comments */}
-        <div className={tredContainerClasses}>
-          <div className={classes.Tred__Comments}>
-            {this.props.comments.map((comment, key) => (
-              <Comment
-                len={this.props.comments.length}
-                id={comment.id}
-                text={comment.text}
-                key={key}
-              />
-            ))}
+        {this.props.comments && (
+          <div className={tredContainerClasses}>
+            <div className={classes.Tred__Comments}>
+              {this.renderComments()}
+            </div>
           </div>
-        </div>
+        )}
+
         <div className={tredContainerClasses + ' d-flex align-items-center'}>
-          <CreateComment />
+          <CreateComment onSubmit={this.props.addComment} id={this.props.id} />
         </div>
       </div>
     )
@@ -109,7 +117,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTred: id => dispatch(getTred(id))
+  getTred: id => dispatch(getTred(id)),
+  addComment: (id, text) => dispatch(addComment(id, text))
 })
 
 Tred.propTypes = {
@@ -120,7 +129,7 @@ Tred.propTypes = {
   views: propTypes.number,
   title: propTypes.string,
   text: propTypes.string,
-  comments: propTypes.array,
+  comments: propTypes.object,
   imgs: propTypes.array,
   error: propTypes.object
 }
