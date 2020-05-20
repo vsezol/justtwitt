@@ -1,7 +1,5 @@
 import {
   START_GET_COMMENTS,
-  SUCCESS_GET_COMMENTS,
-  ERROR_GET_COMMENTS,
   START_ADD_COMMENT,
   SUCCESS_ADD_COMMENT,
   ERROR_ADD_COMMENT,
@@ -20,16 +18,17 @@ export default (state = initialState, action) => {
     case START_GET_COMMENTS:
       return { ...state, loading: true, tredId: action.tredId }
     case SUCCESS_GET_COMMENT:
-      return { ...state, comments: [...state.comments, action.comment], loading: false }
-
-    // case ERROR_GET_COMMENTS:
-    //   return { ...state, error: action.error, loading: false }
+      return {
+        ...state,
+        comments: [...state.comments, action.comment],
+        loading: false
+      }
     case START_ADD_COMMENT:
-      return {...state}
+      return { ...state }
     case SUCCESS_ADD_COMMENT:
-      return {...state, comments: action.comments}
+      return { ...state }
     case ERROR_ADD_COMMENT:
-      return {...state}
+      return { ...state }
     default:
       return state
   }

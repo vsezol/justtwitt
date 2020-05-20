@@ -12,8 +12,6 @@ import { Container } from 'react-bootstrap'
 
 import CreateComment from '../../func/CreateComment/CreateComment'
 
-// import database from '../../../firebase'
-
 class Comments extends Component {
   componentDidMount() {
     const tredId = this.props.match.params.id
@@ -32,15 +30,6 @@ class Comments extends Component {
         text={comment.text}
       />
     ))
-    // return Object.keys(comments).map((id, index) => (
-    //   <Comment
-    //     id={id}
-    //     index={index}
-    //     key={index}
-    //     len={len}
-    //     text={comments[id].text}
-    //   />
-    // ))
   }
 
   addCommentHamdler(text) {
