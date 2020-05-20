@@ -3,7 +3,8 @@ import {
   START_ADD_COMMENT,
   SUCCESS_ADD_COMMENT,
   SUCCESS_GET_COMMENT,
-  ERROR_ADD_COMMENT
+  ERROR_ADD_COMMENT,
+  ERROR_GET_COMMENTS
 } from './actionTypes'
 
 import axios from '../../axios/customAxios'
@@ -23,11 +24,22 @@ const successGetComment = comment => ({
   comment
 })
 
+const errorGetComments = () => ({
+  type: ERROR_GET_COMMENTS
+})
+
 export const getComments = tredId => async dispatch => {
   dispatch(startGetComments(tredId))
-  const commentsRef = database.ref(`treds/public/${tredId}/comments`).limitToLast(20)
-  commentsRef.on('child_added', (data) => {
+  const commentsRef = database
+    .ref(`treds/public/${tredId}/comments`)
+    .limitToLast(20)
+  commentsRef.on('child_added', data => {
     dispatch(successGetComment(data.val()))
+  })
+  commentsRef.on('value', data => {
+    if (!data.val()) {
+      dispatch(errorGetComments())
+    }
   })
 }
 
