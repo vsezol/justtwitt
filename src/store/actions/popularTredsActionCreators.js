@@ -24,7 +24,8 @@ export const getPopularTreds = () => async dispatch => {
   dispatch(startGetPopularTreds())
   try {
     const response = await axios.get('/treds/public.json?orderBy="views"&limitToLast=5')
-    const popularTreds = Object.entries(response.data).reverse()
+    const popularTreds = Object.entries(response.data)
+    popularTreds.sort((a,b) => b[1].views - a[1].views)
     dispatch(successGetPopularTreds(popularTreds))
   } catch (error) {
     dispatch(errorGetPopularTreds(error))
