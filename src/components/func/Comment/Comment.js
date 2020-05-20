@@ -19,8 +19,7 @@ const Comment = props => {
           <p className={classes.Comment__Text + ' m-0 p-0'}>{props.text}</p>
         </Media.Body>
       </Media>
-      {/* если длина равна id, значит не выводить разделитель (последний комментарий) */}
-      {props.len !== props.id ? <hr className='mt-2 mb-2' /> : null}
+      {props.len !== props.index + 1 ? <hr className='mt-2 mb-2' /> : null}
     </>
   )
 }

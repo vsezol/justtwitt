@@ -15,7 +15,8 @@ class CreateComment extends Component {
   }
 
   onSubmitHandler = () => {
-    this.props.onSubmit(this.props.id, this.state.commentText)
+    this.props.onSubmit(this.state.commentText)
+    this.setState(() => ({ commentText: '' }))
   }
 
   render() {

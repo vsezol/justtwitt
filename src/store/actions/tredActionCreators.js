@@ -1,10 +1,7 @@
 import {
   START_GET_TRED,
   SUCCESS_GET_TRED,
-  ERROR_GET_TRED,
-  START_ADD_COMMENT,
-  SUCCESS_ADD_COMMENT,
-  ERROR_ADD_COMMENT
+  ERROR_GET_TRED
 } from './actionTypes'
 
 import axios from '../../axios/customAxios'
@@ -32,28 +29,5 @@ export const getTred = id => async dispatch => {
     dispatch(successGetTred(tred, id))
   } catch (error) {
     dispatch(errorGetTred(error))
-  }
-}
-
-const startAddComment = () => ({
-  type: START_ADD_COMMENT
-})
-
-const successAddComment = () => ({
-  type: SUCCESS_ADD_COMMENT
-})
-
-const errorAddComment = error => ({
-  type: ERROR_ADD_COMMENT,
-  error
-})
-
-export const addComment = (id, text) => async dispatch => {
-  dispatch(startAddComment())
-  try {
-    await axios.post(`/treds/public/${id}/comments.json`, { text })
-    dispatch(successAddComment())
-  } catch (error) {
-    dispatch(errorAddComment(error))
   }
 }

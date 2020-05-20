@@ -4,39 +4,24 @@ import propTypes from 'prop-types'
 
 // redux
 import { connect } from 'react-redux'
-import { getTred, addComment } from '../../../store/actions/tredActionCreators'
+import { getTred } from '../../../store/actions/tredActionCreators'
 
 // rb
 import { Container } from 'react-bootstrap'
 
 // components
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
-// import PhotoGallery from '../PhotoGallery/PhotoGallery'
 import PhotoGallery from '../../func/PhotoGallery/PhotoGallery'
-import Comment from '../../func/Comment/Comment'
 import Stats from '../../func/Stats/Stats'
-import CreateComment from '../../func/CreateComment/CreateComment'
 
 // styles
 import classes from './Tred.module.sass'
 
 // main component
 class Tred extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     const id = this.props.match.params.id
     this.props.getTred(id)
-  }
-
-  renderComments = () => {
-    const comments = this.props.comments
-    return Object.keys(comments).map((id, key) => (
-      <Comment
-        len={comments.length}
-        id={id}
-        text={comments[id].text}
-        key={key}
-      />
-    ))
   }
 
   renderTred = () => {
@@ -77,26 +62,13 @@ class Tred extends Component {
         <div className={tredContainerClasses}>
           <PhotoGallery imgs={this.props.imgs} />
         </div>
-
-        {/* tred comments */}
-        {this.props.comments && (
-          <div className={tredContainerClasses}>
-            <div className={classes.Tred__Comments}>
-              {this.renderComments()}
-            </div>
-          </div>
-        )}
-
-        <div className={tredContainerClasses + ' d-flex align-items-center'}>
-          <CreateComment onSubmit={this.props.addComment} id={this.props.id} />
-        </div>
       </div>
     )
   }
 
   render() {
     return (
-      <Container className='mt-4 mb-4 pt-4'>
+      <Container className='mt-4 pt-4'>
         {this.props.loading ? <LoaderContainer /> : this.renderTred()}
       </Container>
     )
@@ -111,14 +83,12 @@ const mapStateToProps = state => ({
   views: state.tred.views,
   title: state.tred.title,
   text: state.tred.text,
-  comments: state.tred.comments,
   imgs: state.tred.imgs,
   error: state.tred.error
 })
 
 const mapDispatchToProps = dispatch => ({
   getTred: id => dispatch(getTred(id)),
-  addComment: (id, text) => dispatch(addComment(id, text))
 })
 
 Tred.propTypes = {
@@ -129,7 +99,6 @@ Tred.propTypes = {
   views: propTypes.number,
   title: propTypes.string,
   text: propTypes.string,
-  comments: propTypes.object,
   imgs: propTypes.array,
   error: propTypes.object
 }
