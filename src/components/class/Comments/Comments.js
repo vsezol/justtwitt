@@ -48,7 +48,7 @@ class Comments extends Component {
         {!this.props.loading && (
           <Container>
             {!this.props.error && this.props.comments.length > 0 && (
-              <div className={ContainerClasses}>{this.renderComments()}</div>
+              <div className={ContainerClasses + ' ' + classes.Comments}>{this.renderComments()}</div>
             )}
             <div className={ContainerClasses}>
               <CreateComment onSubmit={this.addCommentHamdler.bind(this)} />

@@ -20,10 +20,7 @@ class CreateComment extends Component {
   onSubmitHandler = event => {
     const target = event.currentTarget
     const text = this.state.commentText
-      .split(' ')
-      .filter(word => word.length < 50)
-      .join(' ')
-    if (text !== '') {
+    if (text) {
       this.props.onSubmit(text)
       this.setState(() => ({ commentText: '', target, warning: null }))
     } else {
@@ -64,7 +61,7 @@ class CreateComment extends Component {
         <i
           className={
             classes.CreateComment__SendButton +
-            ' fas fa-arrow-circle-right rounded-circle'
+            ' fas fa-chevron-circle-right rounded-circle'
           }
           onClick={event => this.onSubmitHandler(event)}
         ></i>
