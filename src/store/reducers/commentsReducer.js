@@ -4,7 +4,8 @@ import {
   SUCCESS_ADD_COMMENT,
   ERROR_ADD_COMMENT,
   SUCCESS_GET_COMMENT,
-  ERROR_GET_COMMENTS
+  ERROR_GET_COMMENTS,
+  CLOSE_COMMENTS
 } from '../actions/actionTypes'
 
 const initialState = {
@@ -17,7 +18,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case START_GET_COMMENTS:
-      return { ...state, loading: true, tredId: action.tredId }
+      return { ...state, loading: true, tredId: action.tredId}
     case SUCCESS_GET_COMMENT:
       return {
         ...state,
@@ -33,6 +34,8 @@ export default (state = initialState, action) => {
       return { ...state }
     case ERROR_ADD_COMMENT:
       return { ...state }
+    case CLOSE_COMMENTS:
+      return {...state, comments: []}
     default:
       return state
   }

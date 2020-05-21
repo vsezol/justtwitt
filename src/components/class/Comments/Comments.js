@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import {
   getComments,
-  addComment
+  addComment,
+  closeComments
 } from '../../../store/actions/commentsActionCreators'
 
 import classes from './Comments.module.sass'
@@ -16,6 +17,10 @@ class Comments extends Component {
   componentDidMount() {
     const tredId = this.props.match.params.id
     this.props.getComments(tredId)
+  }
+
+  componentWillUnmount() {
+    this.props.closeComments()
   }
 
   renderComments = () => {
@@ -37,7 +42,6 @@ class Comments extends Component {
   }
 
   render() {
-    // addComment()
     const ContainerClasses = [classes.Container, 'p-4 rounded mb-2'].join(' ')
     return (
       <>
@@ -65,7 +69,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getComments: tredId => dispatch(getComments(tredId)),
-  addComment: (tredId, text) => dispatch(addComment(tredId, text))
+  addComment: (tredId, text) => dispatch(addComment(tredId, text)),
+  closeComments: () => dispatch(closeComments())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Comments)
