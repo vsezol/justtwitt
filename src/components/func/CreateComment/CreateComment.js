@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import classes from './CreateComment.module.sass'
 import TextareaAutosize from 'react-textarea-autosize'
+import { Overlay, Tooltip } from 'react-bootstrap'
 
 class CreateComment extends Component {
   state = {
-    commentText: ''
+    commentText: '',
+    warning: null,
+    target: null
   }
 
   onCommentChangeHandler = event => {
@@ -14,9 +17,18 @@ class CreateComment extends Component {
     }))
   }
 
-  onSubmitHandler = () => {
-    this.props.onSubmit(this.state.commentText)
-    this.setState(() => ({ commentText: '' }))
+  onSubmitHandler = event => {
+    const target = event.currentTarget
+    const text = this.state.commentText
+      .split(' ')
+      .filter(word => word.length < 50)
+      .join(' ')
+    if (text !== '') {
+      this.props.onSubmit(text)
+      this.setState(() => ({ commentText: '', target, warning: null }))
+    } else {
+      this.setState(() => ({ warning: 'You can not send a void', target }))
+    }
   }
 
   render() {
@@ -24,6 +36,22 @@ class CreateComment extends Component {
       <div
         className={classes.CreateComment + ' w-100 d-flex align-items-center'}
       >
+        <Overlay
+          target={this.state.target}
+          show={!!this.state.warning}
+          placement='left'
+        >
+          <Tooltip
+            className={classes.CreateComment__Warning}
+            onClick={() =>
+              this.setState(() => ({
+                warning: null
+              }))
+            }
+          >
+            {this.state.warning}
+          </Tooltip>
+        </Overlay>
         <TextareaAutosize
           placeholder='Write a comment ...'
           className={
@@ -38,7 +66,7 @@ class CreateComment extends Component {
             classes.CreateComment__SendButton +
             ' fas fa-arrow-circle-right rounded-circle'
           }
-          onClick={() => this.onSubmitHandler()}
+          onClick={event => this.onSubmitHandler(event)}
         ></i>
       </div>
     )
