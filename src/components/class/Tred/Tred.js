@@ -17,6 +17,8 @@ import Stats from '../../func/Stats/Stats'
 // styles
 import classes from './Tred.module.sass'
 
+import replaceNlToBr from '../../../modules/replaceNlToBr/replaceNlToBr'
+
 // main component
 class Tred extends Component {
   componentDidMount() {
@@ -55,7 +57,7 @@ class Tred extends Component {
 
         {/* tred text */}
         <div className={tredContainerClasses}>
-          <p className={classes.Tred__Text + ' m-0'}>{this.props.text}</p>
+          <p className={classes.Tred__Text + ' m-0'}>{replaceNlToBr(this.props.text)}</p>
         </div>
 
         {/* tred gallery */}
@@ -88,7 +90,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getTred: id => dispatch(getTred(id)),
+  getTred: id => dispatch(getTred(id))
 })
 
 Tred.propTypes = {
