@@ -14,6 +14,13 @@ import { Container } from 'react-bootstrap'
 import CreateComment from '../../func/CreateComment/CreateComment'
 
 class Comments extends Component {
+  state = {
+    isMyComment: false,
+    isScrollNeeded: false
+  }
+
+  commentsRef = React.createRef()
+
   componentDidMount() {
     const tredId = this.props.match.params.id
     this.props.getComments(tredId)
@@ -21,6 +28,28 @@ class Comments extends Component {
 
   componentWillUnmount() {
     this.props.closeComments()
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const prevComments = prevProps.comments
+    const currComments = this.props.comments
+
+    if (this.state.isMyComment && prevComments.length < currComments.length) {
+      this.scrollToMessagesEnd()
+      this.setState(() => ({ isMyComment: false }))
+    } else if (prevComments.length < currComments.length) {
+      console.log('need scroll')
+      this.setState(() => ({ isScrollNeeded: true }))
+    }
+  }
+
+  scrollToMessagesEnd() {
+    const comments = this.commentsRef.current
+    if (!!comments) {
+      const height = comments.scrollHeight
+      comments.scrollTop = height
+      this.setState(() => ({ isScrollNeeded: false }))
+    }
   }
 
   renderComments = () => {
@@ -39,6 +68,7 @@ class Comments extends Component {
 
   addCommentHamdler(text) {
     this.props.addComment(this.props.tredId, text)
+    this.setState(() => ({ isMyComment: true }))
   }
 
   render() {
@@ -47,9 +77,26 @@ class Comments extends Component {
       <>
         {!this.props.loading && (
           <Container>
+            <div className={classes.Comments__ScrollBtnBlock}>
+              {this.state.isScrollNeeded && (
+                <i
+                  className={
+                    classes.Comments__ScrollBtn + ' fas fa-chevron-circle-down'
+                  }
+                  onClick={this.scrollToMessagesEnd.bind(this)}
+                ></i>
+              )}
+            </div>
+
             {!this.props.error && this.props.comments.length > 0 && (
-              <div className={ContainerClasses + ' ' + classes.Comments}>{this.renderComments()}</div>
+              <div
+                className={ContainerClasses + ' ' + classes.Comments}
+                ref={this.commentsRef}
+              >
+                {this.renderComments()}
+              </div>
             )}
+
             <div className={ContainerClasses}>
               <CreateComment onSubmit={this.addCommentHamdler.bind(this)} />
             </div>

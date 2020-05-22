@@ -15,3 +15,17 @@ $def_border: $border_color 1px solid
     background-color: transparent
   &::-webkit-scrollbar-thumb
     background: #007ACC
+
+  &__ScrollBtnBlock
+    position: relative
+  &__ScrollBtn
+    position: absolute
+    font-size: 2.1rem
+    cursor: pointer
+    top: calc( 70vh - 2.1rem - 10px )
+    left: calc( 100% - 2.1rem - 10px )
+    transition: color 0.25s
+    color: rgba(0,122,204, 0.7 )
+    &:active, &:focus, &:hover
+      color: rgba(0,122,204, 1.0 )
+

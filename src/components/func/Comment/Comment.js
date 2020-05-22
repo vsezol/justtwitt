@@ -6,7 +6,7 @@ import replaceNlToBr from '../../../modules/replaceNlToBr/replaceNlToBr'
 
 const Comment = props => {
   return (
-    <>
+    <div className={classes.Comment}>
       <Media>
         <Image
           width={48}
@@ -23,7 +23,7 @@ const Comment = props => {
         </Media.Body>
       </Media>
       {props.len !== props.index + 1 ? <hr className='mt-2 mb-2' /> : null}
-    </>
+    </div>
   )
 }
 
