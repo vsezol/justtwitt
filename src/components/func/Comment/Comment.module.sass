@@ -1,9 +1,21 @@
+$def_color: #007ACC
 .Comment
-  display: block
+  display: flex
+  flex-direction: row
+  justify-content: start
+  
+  &__Avatar
+    min-width: 32px
+    min-height: 32px
+
   &__Id
     font-size: 1rem
     font-family: 'Roboto-BoldItalic'
+  
   &__Text
     font-size: 1rem
     font-family: 'Roboto-Regular'
     word-break: break-word
+    background: #EDEEF0
+    color: black
+    width: auto
