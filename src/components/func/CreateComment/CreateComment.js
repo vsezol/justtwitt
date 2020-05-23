@@ -3,6 +3,25 @@ import classes from './CreateComment.module.sass'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Overlay, Tooltip } from 'react-bootstrap'
 
+const filterNl = text => {
+  const textArr = text.split('\n')
+  const fTextArr = []
+  let isLastSymbolNl = false
+  for (let i = 0; i <= textArr.length; i++) {
+    const item = textArr[i]
+    if (!isLastSymbolNl && item === '') {
+      fTextArr.push(item)
+      isLastSymbolNl = true
+    } else if (!isLastSymbolNl && item !== '') {
+      fTextArr.push(item)
+    } else if (isLastSymbolNl && item !== '') {
+      fTextArr.push(item)
+      isLastSymbolNl = false
+    }
+  }
+  return fTextArr.join('\n')
+}
+
 class CreateComment extends Component {
   state = {
     commentText: '',
@@ -19,7 +38,7 @@ class CreateComment extends Component {
 
   onSubmitHandler = event => {
     const target = event.currentTarget
-    const text = this.state.commentText
+    const text = filterNl(this.state.commentText).trim()
     if (text) {
       this.props.onSubmit(text)
       this.setState(() => ({ commentText: '', target, warning: null }))

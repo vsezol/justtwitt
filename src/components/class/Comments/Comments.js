@@ -37,18 +37,43 @@ class Comments extends Component {
     if (this.state.isMyComment && prevComments.length < currComments.length) {
       this.scrollToMessagesEnd()
       this.setState(() => ({ isMyComment: false }))
-    } else if (prevComments.length < currComments.length) {
-      console.log('need scroll')
+    } else if (
+      !this.checkUserOnEnd(window.innerHeight * 0.2) &&
+      prevComments.length < currComments.length
+    ) {
       this.setState(() => ({ isScrollNeeded: true }))
+    } else if (
+      this.checkUserOnEnd(window.innerHeight * 0.2) &&
+      prevComments.length < currComments.length
+    ) {
+      this.scrollToMessagesEnd()
+    }
+  }
+
+  checkUserOnEnd(maxHeight) {
+    const commentsBlock = this.commentsRef.current
+    if (!!commentsBlock) {
+      const scrollHeight = commentsBlock.scrollHeight
+      const scrollTop = commentsBlock.scrollTop
+      const height = window.innerHeight * 0.7
+      return Math.abs(scrollHeight - scrollTop - height) < maxHeight
     }
   }
 
   scrollToMessagesEnd() {
-    const comments = this.commentsRef.current
-    if (!!comments) {
-      const height = comments.scrollHeight
-      comments.scrollTop = height
+    const commentsBlock = this.commentsRef.current
+    if (!!commentsBlock) {
+      const height = commentsBlock.scrollHeight
+      commentsBlock.scrollTop = height
       this.setState(() => ({ isScrollNeeded: false }))
+    }
+  }
+
+  scrollHandler() {
+    if (this.checkUserOnEnd(5)) {
+      this.setState(() => ({ isScrollNeeded: false }))
+    } else {
+      this.setState(() => ({ isScrollNeeded: true }))
     }
   }
 
@@ -92,6 +117,7 @@ class Comments extends Component {
               <div
                 className={ContainerClasses + ' ' + classes.Comments}
                 ref={this.commentsRef}
+                onScroll={this.scrollHandler.bind(this)}
               >
                 {this.renderComments()}
               </div>

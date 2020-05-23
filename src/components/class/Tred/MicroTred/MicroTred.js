@@ -6,7 +6,7 @@ import Stats from '../../../func/Stats/Stats'
 
 const MicroTred = props => {
   const limitText = text =>
-    props.tred.text.slice(0, 200).split(' ').slice(0, -1).join(' ') + '...'
+    text.slice(0, 200).split(' ').slice(0, -1).join(' ') + '...'
   return (
     <div
       className={[
