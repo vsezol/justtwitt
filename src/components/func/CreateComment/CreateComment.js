@@ -16,9 +16,14 @@ class CreateComment extends Component {
 
   onCommentChangeHandler = event => {
     const text = event.currentTarget.value
-    this.setState(() => ({
-      commentText: text
-    }))
+    const target = this.sendRef.current
+    if (text.length <= 700) {
+      this.setState(() => ({
+        commentText: text
+      }))
+    } else {
+      this.setState(() => ({ warning: 'Maximum size 700', target }))
+    }
   }
 
   handleKeyPress = event => {
