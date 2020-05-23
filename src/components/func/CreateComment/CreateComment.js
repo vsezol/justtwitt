@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import classes from './CreateComment.module.sass'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Overlay, Tooltip } from 'react-bootstrap'
@@ -29,6 +29,8 @@ class CreateComment extends Component {
     target: null
   }
 
+  sendRef = createRef()
+
   onCommentChangeHandler = event => {
     const text = event.currentTarget.value
     this.setState(() => ({
@@ -36,8 +38,14 @@ class CreateComment extends Component {
     }))
   }
 
-  onSubmitHandler = event => {
-    const target = event.currentTarget
+  handleKeyPress = event => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      this.onSubmitHandler()
+    }
+  }
+
+  onSubmitHandler = () => {
+    const target = this.sendRef.current
     const text = filterNl(this.state.commentText).trim()
     if (text) {
       this.props.onSubmit(text)
@@ -76,13 +84,16 @@ class CreateComment extends Component {
           }
           value={this.state.commentText}
           onChange={this.onCommentChangeHandler.bind(this)}
+          onKeyUp={this.handleKeyPress.bind(this)}
+          maxRows={10}
         />
         <i
           className={
             classes.CreateComment__SendButton +
             ' fas fa-chevron-circle-right rounded-circle'
           }
-          onClick={event => this.onSubmitHandler(event)}
+          onClick={() => this.onSubmitHandler()}
+          ref={this.sendRef}
         ></i>
       </div>
     )

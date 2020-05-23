@@ -8,11 +8,15 @@ const limitText = text => text.split('\n').slice(0, 3).join('\n')
 
 let isBig = false
 const initLimitText = text => {
-  if (text.split('\n').length >= 3) {
+  if (text.split('\n').length > 3) {
     isBig = true
-    return limitText(text)
   } else {
     isBig = false
+  }
+
+  if (text.split('\n').length >= 3) {
+    return limitText(text)
+  } else {
     return text
   }
 }
