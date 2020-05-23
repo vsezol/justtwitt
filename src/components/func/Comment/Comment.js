@@ -4,28 +4,41 @@ import avatarImg from './avatar.svg'
 import classes from './Comment.module.sass'
 import replaceNlToBr from '../../../modules/replaceNlToBr/replaceNlToBr'
 
+const limitText = text => text.split('\n').slice(0, 3).join('\n')
+
+let isBig = false
+const initLimitText = text => {
+  if (text.split('\n').length >= 3) {
+    isBig = true
+    return limitText(text)
+  } else {
+    isBig = false
+    return text
+  }
+}
+
 const Comment = props => {
   const [commentMode, setCommentMode] = useState(false)
 
-  const [commentText, setCommentText] = useState(props.text)
+  const [commentText, setCommentText] = useState(initLimitText(props.text))
 
-  const limitText = text => text.slice(0, 30)
+  const handleText = (text, commentMode) => {
+    if (text.split('\n').length >= 3 && !commentMode) {
+      setCommentText(limitText(text))
+    } else {
+      setCommentText(text)
+    }
+  }
 
-  // const closeComment = () => {
-  //   setCommentMode(false)
-  //   setCommentText(limitText(props.text))
-  // }
-
-  // const openComment = () => {
-  //   setCommentMode(true)
-  //   setCommentText(props.text)
-  // }
-
-  // const commentLength = () => {
-  //   if (props.text.length > 50) {
-  //     closeComment()
-  //   }
-  // }
+  const toggleComment = () => {
+    if (!commentMode) {
+      setCommentMode(true)
+      handleText(props.text, true)
+    } else {
+      setCommentMode(false)
+      handleText(props.text, false)
+    }
+  }
 
   return (
     <div className={classes.Comment + ' p-1'}>
@@ -36,9 +49,18 @@ const Comment = props => {
         roundedCircle
         src={avatarImg}
       />
-      <div>
+      <div onClick={toggleComment} style={{ cursor: 'pointer' }}>
         <p className={classes.Comment__Text + ' m-0 p-1 rounded'}>
-          {replaceNlToBr(limitText(commentText))}
+          {replaceNlToBr(commentText)}
+          {isBig && (
+            <span className={classes.Toggler}>
+              {commentMode ? (
+                <i className='fas fa-toggle-on'></i>
+              ) : (
+                <i className='fas fa-toggle-off'></i>
+              )}
+            </span>
+          )}
         </p>
       </div>
     </div>
