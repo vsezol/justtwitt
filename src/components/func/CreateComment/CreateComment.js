@@ -2,25 +2,8 @@ import React, { Component, createRef } from 'react'
 import classes from './CreateComment.module.sass'
 import TextareaAutosize from 'react-textarea-autosize'
 import { Overlay, Tooltip } from 'react-bootstrap'
-
-const filterNl = text => {
-  const textArr = text.split('\n')
-  const fTextArr = []
-  let isLastSymbolNl = false
-  for (let i = 0; i <= textArr.length; i++) {
-    const item = textArr[i]
-    if (!isLastSymbolNl && item === '') {
-      fTextArr.push(item)
-      isLastSymbolNl = true
-    } else if (!isLastSymbolNl && item !== '') {
-      fTextArr.push(item)
-    } else if (isLastSymbolNl && item !== '') {
-      fTextArr.push(item)
-      isLastSymbolNl = false
-    }
-  }
-  return fTextArr.join('\n')
-}
+import isMobileDevice from '../../../modules/isMobileDevice/isMobileDevice'
+import filterNl from '../../../modules/filterNl/filterNl'
 
 class CreateComment extends Component {
   state = {
@@ -39,7 +22,7 @@ class CreateComment extends Component {
   }
 
   handleKeyPress = event => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === 'Enter' && !event.shiftKey && !isMobileDevice()) {
       this.onSubmitHandler()
     }
   }
