@@ -17,7 +17,7 @@ class CreateComment extends Component {
   onCommentChangeHandler = event => {
     const text = event.currentTarget.value
     const target = this.sendRef.current
-    if (text.length <= 700) {
+    if (text.length <= 900) {
       this.setState(() => ({
         commentText: text
       }))

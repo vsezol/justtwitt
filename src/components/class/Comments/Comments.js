@@ -38,15 +38,16 @@ class Comments extends Component {
       this.scrollToMessagesEnd()
       this.setState(() => ({ isMyComment: false }))
     } else if (
-      !this.checkUserOnEnd(window.innerHeight * 0.2) &&
+      !this.checkUserOnEnd(100) &&
       prevComments.length < currComments.length
     ) {
       this.setState(() => ({ isScrollNeeded: true }))
     } else if (
-      this.checkUserOnEnd(window.innerHeight * 0.2) &&
+      this.checkUserOnEnd(100) &&
       prevComments.length < currComments.length
     ) {
       this.scrollToMessagesEnd()
+      this.setState(() => ({ isScrollNeeded: false }))
     }
   }
 
@@ -70,7 +71,7 @@ class Comments extends Component {
   }
 
   scrollHandler() {
-    if (this.checkUserOnEnd(5)) {
+    if (this.checkUserOnEnd(100)) {
       this.setState(() => ({ isScrollNeeded: false }))
     } else {
       this.setState(() => ({ isScrollNeeded: true }))
