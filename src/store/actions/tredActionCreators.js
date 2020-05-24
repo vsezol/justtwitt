@@ -1,9 +1,4 @@
-import {
-  START_GET_TRED,
-  SUCCESS_GET_TRED,
-  ERROR_GET_TRED,
-  ADD_TRED_VIEW
-} from './actionTypes'
+import { START_GET_TRED, SUCCESS_GET_TRED, ERROR_GET_TRED } from './actionTypes'
 
 import axios from '../../axios/customAxios'
 

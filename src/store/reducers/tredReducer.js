@@ -2,7 +2,6 @@ import {
   START_GET_TRED,
   SUCCESS_GET_TRED,
   ERROR_GET_TRED
-  // ADD_TRED_VIEW
 } from '../actions/actionTypes'
 
 const initialState = {
@@ -33,8 +32,6 @@ export default (state = initialState, action) => {
         text: action.tred.text,
         imgs: action.tred.imgs
       }
-    // case ADD_TRED_VIEW:
-    //   return {...state, views: action.views}
     case ERROR_GET_TRED:
       return { ...state, loading: false, error: action.error }
     default:

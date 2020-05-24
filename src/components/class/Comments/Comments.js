@@ -78,6 +78,16 @@ class Comments extends Component {
     }
   }
 
+  checkCommentHeight = () => {
+    const commentsBlock = this.commentsRef.current
+    if (!!commentsBlock) {
+      const height = commentsBlock.scrollHeight
+      return height > window.innerHeight * 0.7
+    } else {
+      return false
+    }
+  }
+
   renderComments = () => {
     const comments = this.props.comments
     const len = Object.keys(comments).length
@@ -103,17 +113,6 @@ class Comments extends Component {
       <>
         {!this.props.loading && (
           <Container>
-            <div className={classes.Comments__ScrollBtnBlock}>
-              {this.state.isScrollNeeded && (
-                <i
-                  className={
-                    classes.Comments__ScrollBtn + ' fas fa-chevron-circle-down'
-                  }
-                  onClick={this.scrollToMessagesEnd}
-                ></i>
-              )}
-            </div>
-
             {!this.props.error && this.props.comments.length > 0 && (
               <div
                 className={ContainerClasses + ' ' + classes.Comments}
@@ -123,7 +122,16 @@ class Comments extends Component {
                 {this.renderComments()}
               </div>
             )}
-
+            <div className={classes.Comments__ScrollBtnBlock}>
+              {this.checkCommentHeight() && this.state.isScrollNeeded && (
+                <i
+                  className={
+                    classes.Comments__ScrollBtn + ' fas fa-chevron-circle-down'
+                  }
+                  onClick={this.scrollToMessagesEnd}
+                ></i>
+              )}
+            </div>
             <div className={ContainerClasses}>
               <CreateComment onSubmit={this.addCommentHamdler} />
             </div>
