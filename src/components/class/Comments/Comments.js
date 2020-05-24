@@ -11,7 +11,7 @@ import classes from './Comments.module.sass'
 import Comment from '../../func/Comment/Comment'
 import { Container } from 'react-bootstrap'
 
-import CreateComment from '../../func/CreateComment/CreateComment'
+import CreateComment from '../CreateComment/CreateComment'
 
 class Comments extends Component {
   state = {
@@ -61,7 +61,7 @@ class Comments extends Component {
     }
   }
 
-  scrollToMessagesEnd() {
+  scrollToMessagesEnd = () => {
     const commentsBlock = this.commentsRef.current
     if (!!commentsBlock) {
       const height = commentsBlock.scrollHeight
@@ -70,7 +70,7 @@ class Comments extends Component {
     }
   }
 
-  scrollHandler() {
+  scrollHandler = () => {
     if (this.checkUserOnEnd(100)) {
       this.setState(() => ({ isScrollNeeded: false }))
     } else {
@@ -92,7 +92,7 @@ class Comments extends Component {
     ))
   }
 
-  addCommentHamdler(text) {
+  addCommentHamdler = text => {
     this.props.addComment(this.props.tredId, text)
     this.setState(() => ({ isMyComment: true }))
   }
@@ -109,7 +109,7 @@ class Comments extends Component {
                   className={
                     classes.Comments__ScrollBtn + ' fas fa-chevron-circle-down'
                   }
-                  onClick={this.scrollToMessagesEnd.bind(this)}
+                  onClick={this.scrollToMessagesEnd}
                 ></i>
               )}
             </div>
@@ -118,14 +118,14 @@ class Comments extends Component {
               <div
                 className={ContainerClasses + ' ' + classes.Comments}
                 ref={this.commentsRef}
-                onScroll={this.scrollHandler.bind(this)}
+                onScroll={this.scrollHandler}
               >
                 {this.renderComments()}
               </div>
             )}
 
             <div className={ContainerClasses}>
-              <CreateComment onSubmit={this.addCommentHamdler.bind(this)} />
+              <CreateComment onSubmit={this.addCommentHamdler} />
             </div>
           </Container>
         )}

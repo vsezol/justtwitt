@@ -57,7 +57,9 @@ class Tred extends Component {
 
         {/* tred text */}
         <div className={tredContainerClasses}>
-          <p className={classes.Tred__Text + ' m-0'}>{replaceNlToBr(this.props.text)}</p>
+          <p className={classes.Tred__Text + ' m-0'}>
+            {replaceNlToBr(this.props.text)}
+          </p>
         </div>
 
         {/* tred gallery */}

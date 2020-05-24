@@ -1,7 +1,8 @@
 import {
   START_GET_TRED,
   SUCCESS_GET_TRED,
-  ERROR_GET_TRED
+  ERROR_GET_TRED,
+  ADD_TRED_VIEW
 } from './actionTypes'
 
 import axios from '../../axios/customAxios'
@@ -26,8 +27,13 @@ export const getTred = id => async dispatch => {
   try {
     const response = await axios.get(`/treds/public/${id}.json`)
     const tred = response.data
+    addView(id, tred.views + 1)
     dispatch(successGetTred(tred, id))
   } catch (error) {
     dispatch(errorGetTred(error))
   }
+}
+
+const addView = (id, views) => {
+  axios.patch(`/treds/public/${id}.json`, { views })
 }

@@ -7,6 +7,7 @@ export const ERROR_GET_POPULAR_TREDS = 'ERROR_GET_POPULAR_TREDS'
 export const START_GET_TRED = 'START_GET_TRED'
 export const SUCCESS_GET_TRED = 'SUCCESS_GET_TRED'
 export const ERROR_GET_TRED = 'ERROR_GET_TRED'
+// export const ADD_TRED_VIEW = 'ADD_TRED_VIEW'
 
 // comments
 export const START_ADD_COMMENT = 'START_ADD_COMMENT'

@@ -17,12 +17,12 @@ class CreateComment extends Component {
   onCommentChangeHandler = event => {
     const text = event.currentTarget.value
     const target = this.sendRef.current
-    if (text.length <= 900) {
+    if (text.length <= 1000) {
       this.setState(() => ({
         commentText: text
       }))
     } else {
-      this.setState(() => ({ warning: 'Maximum size 700', target }))
+      this.setState(() => ({ warning: 'Maximum size 1000', target }))
     }
   }
 
@@ -71,8 +71,8 @@ class CreateComment extends Component {
             ' rounded-0 border-0 w-100 textarea p-2'
           }
           value={this.state.commentText}
-          onChange={this.onCommentChangeHandler.bind(this)}
-          onKeyUp={this.handleKeyPress.bind(this)}
+          onChange={this.onCommentChangeHandler}
+          onKeyUp={this.handleKeyPress}
           maxRows={10}
         />
         <i
@@ -80,7 +80,7 @@ class CreateComment extends Component {
             classes.CreateComment__SendButton +
             ' fas fa-chevron-circle-right rounded-circle'
           }
-          onClick={() => this.onSubmitHandler()}
+          onClick={this.onSubmitHandler}
           ref={this.sendRef}
         ></i>
       </div>
