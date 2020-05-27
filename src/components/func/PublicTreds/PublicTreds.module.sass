@@ -1,0 +1,25 @@
+$def_color: #007ACC
+$border_color: #E3E4E8
+$def_border: $border_color 1px solid
+
+$title_size: 1.4rem
+$gallery_title_size: 1.2rem
+$text_size: 1rem
+
+.PublicTreds
+  &__Title
+    font-size: 1.8rem
+  &__NavLink
+    display: block
+    font-size: $text_size
+    border: $def_border
+    background-color: $def_color
+    color: white
+    border: none
+    font-family: 'Roboto-Italic'
+    &:hover, &:focus, &:active
+      text-decoration: none
+      outline: none
+      color: white
+      box-shadow: 0px 0px 4px 2px rgba(0,122,204,0.5) !important
+      background-color: $def_color !important
