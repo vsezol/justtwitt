@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from '../Tred.module.sass'
-import { Link } from 'react-router-dom'
+import LinkBtn from '../../../UI/LinkBtn/LinkBtn'
 
 import Stats from '../../../func/Stats/Stats'
 
@@ -32,12 +32,7 @@ const MicroTred = props => {
             date={props.tred.date}
           />
         </div>
-        <Link
-          to={`/public/${props.tred.board}/${props.tred.id}/`}
-          className={classes.Tred__ReadMore + ' mr-md-auto btn btn-primary'}
-        >
-          Read more
-        </Link>
+        <LinkBtn to={`/public/${props.tred.board}/${props.tred.id}/`} className='mr-md-auto'>Read more</LinkBtn>
       </div>
     </div>
   )
