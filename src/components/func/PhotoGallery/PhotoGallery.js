@@ -28,15 +28,19 @@ const renderMoreImages = (hiddenCount, galleryMode, switchGallery) => {
   }
 
   return (
-    <div
-      className={classes.PhotoGallery__Item + ' p-1'}
-      onClick={() => switchGallery(galleryMode)}
-    >
-      <div className={classes.PhotoGallery__Item__Image_Fake + ' rounded'}>
-        <i className={plusStyles.join(' ')}></i>
-        <span className={countStyles.join(' ')}>{hiddenCount}</span>
-      </div>
-    </div>
+    <>
+      {hiddenCount > 0 && (
+        <div
+          className={classes.PhotoGallery__Item + ' p-1'}
+          onClick={() => switchGallery(galleryMode)}
+        >
+          <div className={classes.PhotoGallery__Item__Image_Fake + ' rounded'}>
+            <i className={plusStyles.join(' ')}></i>
+            <span className={countStyles.join(' ')}>{hiddenCount}</span>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
@@ -45,10 +49,7 @@ const renderModalImage = (closeImg, imgSrc) => {
     <div className={classes.ModalOverlay} onClick={() => closeImg()}>
       <i className={classes.ModalOverlay__Close + ' fas fa-times'}></i>
       <div className={classes.ModalOverlay__Wrapper}>
-        <Image
-          className={classes.ModalOverlay__Wrapper__Image}
-          src={imgSrc}
-        />
+        <Image className={classes.ModalOverlay__Wrapper__Image} src={imgSrc} />
       </div>
     </div>
   )
