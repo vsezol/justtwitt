@@ -6,13 +6,14 @@ import Layout from './hoc/Layout/Layout'
 import PopularTreds from './components/class/PopularTreds/PopularTreds'
 import TredWithComments from './hoc/TredWithComments/TredWithComments'
 import CreateTred from './components/class/CreateTred/CreateTred'
+import PublicTreds from './components/func/PublicTreds/PublicTreds'
 
 class App extends Component {
   render() {
     const routes = (
       <Switch>
         <Route path='/' exact component={PopularTreds} />
-        <Route path='/public' exact render={() => <h1>Public treds</h1>} />
+        <Route path='/public' exact component={PublicTreds} />
         <Route
           path='/public/:board/:id'
           component={TredWithComments}
