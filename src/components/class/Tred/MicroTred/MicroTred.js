@@ -25,7 +25,7 @@ const MicroTred = props => {
           ' d-flex w-100 justify-content-start align-items-center flex-wrap justify-content-md-end flex-md-row-reverse'
         }
       >
-        <div className='d-flex flex-wrap mb-2  mb-sm-0'>
+        <div className='d-flex flex-wrap mb-2 mb-sm-0 ml-md-auto'>
           <Stats
             views={props.tred.views}
             board={props.tred.board}
