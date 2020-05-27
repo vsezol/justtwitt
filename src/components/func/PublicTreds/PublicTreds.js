@@ -1,19 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 import { Container, Row, Col } from 'react-bootstrap'
-import axios from '../../../axios/customAxios'
 import classes from './PublicTreds.module.sass'
 import LinkBtn from '../../UI/LinkBtn/LinkBtn'
+import { getBoardsList } from '../../../store/actions/publicTredsActionCreators'
+import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 
 const PublicTreds = () => {
-  const [boards, setBoards] = useState(null)
+  const { loading, boardsList, error } = useSelector(
+    state => state.publicTreds,
+    shallowEqual
+  )
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    const getBoards = async () => {
-      const response = await axios.get('/boards.json')
-      setBoards(response.data)
-    }
-    getBoards()
-  }, [])
+    dispatch(getBoardsList())
+  }, [dispatch])
 
   const renderBoards = boards =>
     Object.keys(boards).map((name, index) => (
@@ -21,15 +23,20 @@ const PublicTreds = () => {
         <LinkBtn to={boards[name]}>{name}</LinkBtn>
       </Col>
     ))
+
   return (
     <Container>
       <div className='pt-4'>
         <h1 className={classes.PublicTreds__Title + ' m-0'}>Публичные треды</h1>
-        <div className={classes.PublicTreds__Logo}></div>
       </div>
-      <div className='p-4 mb-2'>
-        <Row>{!!boards && renderBoards(boards)}</Row>
-      </div>
+      {loading ? (
+        <LoaderContainer />
+      ) : (
+        <div className='p-4 mb-2'>
+          {error && <p>Something is wrong <b>;(</b></p>}
+          <Row>{renderBoards(boardsList)}</Row>
+        </div>
+      )}
     </Container>
   )
 }

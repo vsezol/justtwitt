@@ -12,7 +12,7 @@ import { Container } from 'react-bootstrap'
 // components
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 import PhotoGallery from '../../func/PhotoGallery/PhotoGallery'
-import Stats from '../../func/Stats/Stats'
+import Stats from '../../UI/Stats/Stats'
 
 // styles
 import classes from './Tred.module.sass'

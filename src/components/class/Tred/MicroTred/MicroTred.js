@@ -2,7 +2,7 @@ import React from 'react'
 import classes from '../Tred.module.sass'
 import LinkBtn from '../../../UI/LinkBtn/LinkBtn'
 
-import Stats from '../../../func/Stats/Stats'
+import Stats from '../../../UI/Stats/Stats'
 
 const MicroTred = props => {
   const limitText = text =>
