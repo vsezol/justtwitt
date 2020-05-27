@@ -1,0 +1,31 @@
+$def_color: #007ACC
+$border_color: #E3E4E8
+$def_border: $border_color 1px solid
+
+.Container
+  background-color: white
+  border: $def_border
+
+.Comments
+  max-height: 70vh
+  height: auto
+  overflow-y: scroll
+  &::-webkit-scrollbar
+    width: 5px
+    background-color: transparent
+  &::-webkit-scrollbar-thumb
+    background: #007ACC
+
+  &__ScrollBtnBlock
+    position: relative
+  &__ScrollBtn
+    position: absolute
+    font-size: 2.1rem
+    cursor: pointer
+    bottom: 20px
+    left: calc( 100% - 2.1rem - 10px )
+    transition: color 0.25s
+    color: rgba(0,122,204, 0.7 )
+    &:active, &:focus, &:hover
+      color: rgba(0,122,204, 1.0 )
+
