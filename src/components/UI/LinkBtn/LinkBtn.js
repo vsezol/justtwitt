@@ -1,13 +1,32 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import classes from './LinkBtn.module.sass'
+import styled from 'styled-components'
 
-const LinkBtn = ({ to, children }) => {
+const LinkBtn = styled(Link)`
+  display: inline-block;
+  padding: 10px;
+  border-radius: 5px;
+
+  font-size: 1rem;
+  font-family: 'Roboto-Italic';
+  text-decoration: none;
+
+  color: ${({ theme }) => theme.linkColor};
+  background: ${({ theme }) => theme.defColor};
+
+  transition: all 0.25s ease-in-out;
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: ${({ theme }) => theme.linkHoverShadow};
+    background: ${({ theme }) => theme.linkHoverBg};
+  }
+`
+
+export default ({ to, children }) => {
   return (
-    <Link to={to} className={classes.LinkBtn + ' p-2 text-center rounded'}>
+    <LinkBtn to={to}>
       {children}
-    </Link>
+    </LinkBtn>
   )
 }
-
-export default LinkBtn

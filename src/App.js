@@ -14,10 +14,7 @@ class App extends Component {
       <Switch>
         <Route path='/' exact component={PopularTreds} />
         <Route path='/public' exact component={PublicTreds} />
-        <Route
-          path='/public/:board/:id'
-          component={TredWithComments}
-        />
+        <Route path='/public/:board/:id' component={TredWithComments} />
         <Route path='/public/:board/create' component={CreateTred} />
         <Route path='/private' render={() => <h1>Private treds</h1>} />
       </Switch>
