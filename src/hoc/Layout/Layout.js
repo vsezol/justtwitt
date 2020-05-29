@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { ThemeSwitcherProvider } from '../ThemeSwitcher/ThemeSwitcher'
 
 const Main = styled.main`
-  min-height: 100vh;
+  min-height: calc(100vh - 50px);
   padding-top: 50px;
   background: ${({ theme }) => theme.bgColor};
 `
