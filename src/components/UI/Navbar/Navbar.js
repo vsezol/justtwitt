@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { minMd } from '../../styled/grid'
+import { ThemeSwitcherContext } from '../../../hoc/ThemeSwitcher/ThemeSwitcher'
+import { DARK_THEME, LIGHT_THEME } from '../../../hoc/ThemeSwitcher/actionTypes'
 
 const Nav = styled.nav`
   position: fixed;
@@ -77,6 +79,19 @@ const Navbar = () => {
     }
   ]
 
+  const themes = [
+    {
+      type: LIGHT_THEME,
+      text: 'Light'
+    },
+    {
+      type: DARK_THEME,
+      text: 'Dark'
+    }
+  ]
+
+  const dispatch = useContext(ThemeSwitcherContext)
+
   return (
     <Nav>
       <NavContainer>
@@ -86,6 +101,13 @@ const Navbar = () => {
             <LinkAlt>&nbsp;{link.text}</LinkAlt>
           </NavbarLink>
         ))}
+        <select onChange={e => dispatch({ type: e.target.value })}>
+          {themes.map((theme, index) => (
+            <option key={index} value={theme.type}>
+              {theme.text}
+            </option>
+          ))}
+        </select>
       </NavContainer>
     </Nav>
   )
