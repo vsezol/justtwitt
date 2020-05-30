@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
 import classes from './PhotoGallery.module.sass'
-import { Image } from 'react-bootstrap'
+import { Item, Image, FakeImage, PhotoGallery, FakeCount } from './styledComponents'
+
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import { faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 const spliceImgs = (imgs, count) => [...imgs].splice(0, count)
 
 const renderGallery = (imgs, openImg) => {
   return imgs.map((imgSrc, key) => (
-    <div key={key} className={classes.PhotoGallery__Item + ' p-1'}>
+    <Item key={key}>
       <Image
+        as='img'
         index={key}
         src={imgSrc}
-        className={classes.PhotoGallery__Item__Image}
+        alt=''
         onClick={e => openImg(e)}
         rounded
       />
-    </div>
+    </Item>
   ))
 }
 
@@ -30,15 +34,14 @@ const renderMoreImages = (hiddenCount, galleryMode, switchGallery) => {
   return (
     <>
       {hiddenCount > 0 && (
-        <div
-          className={classes.PhotoGallery__Item + ' p-1'}
+        <Item
           onClick={() => switchGallery(galleryMode)}
         >
-          <div className={classes.PhotoGallery__Item__Image_Fake + ' rounded'}>
-            <i className={plusStyles.join(' ')}></i>
-            <span className={countStyles.join(' ')}>{hiddenCount}</span>
-          </div>
-        </div>
+          <FakeImage>
+            <Icon className={plusStyles.join(' ')} icon={faPlusCircle}></Icon>
+            <FakeCount className={countStyles.join(' ')}>{hiddenCount}</FakeCount>
+          </FakeImage>
+        </Item>
       )}
     </>
   )
@@ -47,7 +50,7 @@ const renderMoreImages = (hiddenCount, galleryMode, switchGallery) => {
 const renderModalImage = (closeImg, imgSrc) => {
   return (
     <div className={classes.ModalOverlay} onClick={() => closeImg()}>
-      <i className={classes.ModalOverlay__Close + ' fas fa-times'}></i>
+      <Icon className={classes.ModalOverlay__Close} icon={faTimes}></Icon>
       <div className={classes.ModalOverlay__Wrapper}>
         <Image className={classes.ModalOverlay__Wrapper__Image} src={imgSrc} />
       </div>
@@ -55,7 +58,7 @@ const renderModalImage = (closeImg, imgSrc) => {
   )
 }
 
-const PhotoGallery = props => {
+export default props => {
   const defaultCount = 3
   const visibleCount = props.imgs.length
   const hiddenCount = visibleCount - defaultCount
@@ -86,16 +89,10 @@ const PhotoGallery = props => {
   }
 
   return (
-    <div
-      className={
-        classes.PhotoGallery + ' w-100 d-flex flex-wrap justify-content-center'
-      }
-    >
+    <PhotoGallery>
       {showMode && renderModalImage(closeImg, imgSrc)}
       {renderGallery(imgs, openImg)}
       {renderMoreImages(hiddenCount, galleryMode, switchGallery)}
-    </div>
+    </PhotoGallery>
   )
 }
-
-export default PhotoGallery

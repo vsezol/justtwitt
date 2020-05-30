@@ -27,23 +27,21 @@ class Tred extends Component {
   }
 
   renderTred = () => {
+    const { title, views, board, date, text, imgs } = this.props
+
     return (
       <div style={{ marginTop: 10 }}>
         <TredContainer>
-          <Title>{this.props.title}</Title>
-          <Stats
-            views={this.props.views}
-            board={this.props.board}
-            date={this.props.date}
-          />
+          <Title>{title}</Title>
+          <Stats views={views} board={board} date={date} />
         </TredContainer>
 
         <TredContainer>
-          <Text>{replaceNlToBr(this.props.text)}</Text>
+          <Text>{replaceNlToBr(text)}</Text>
         </TredContainer>
 
         <TredContainer>
-          <PhotoGallery imgs={this.props.imgs} />
+          <PhotoGallery imgs={imgs} />
         </TredContainer>
       </div>
     )
