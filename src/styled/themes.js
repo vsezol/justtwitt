@@ -16,8 +16,8 @@ export const dark = {
   defColor: '#37373D',
   textColor: '#CCCCCC',
   linkColor: '#FFFFFF',
-  linkHoverBg: '#252526',
-  linkHoverShadow: '0px 0px 0px 3px rgba(90, 90, 96, 0.5)',
+  linkHoverBg: '#4E4E54',
+  linkHoverShadow: '0px 0px 0px 3px rgba(85, 85, 85, 0.5)',
   tredBorderColor: '#E3E4E8',
   tredBg: '#252526'
 }

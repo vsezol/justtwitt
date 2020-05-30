@@ -1,9 +1,23 @@
 import React, { useState } from 'react'
 import classes from './PhotoGallery.module.sass'
-import { Item, Image, FakeImage, PhotoGallery, FakeCount } from './styledComponents'
+import {
+  Item,
+  Image,
+  FakeImage,
+  PhotoGallery,
+  FakeCount
+} from './styledComponents'
 
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle, faTimes } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components'
+
+const PlusIcon = styled(Icon)`
+  color: ${({ theme }) => theme.linkColor};
+  font-size: 2.2rem;
+  transition: all 0.25s ease-in-out;
+  transform: ${({ active }) => (active ? 'rotate(-45deg)' : 'rotate(0deg)')};
+`
 
 const spliceImgs = (imgs, count) => [...imgs].splice(0, count)
 
@@ -23,23 +37,13 @@ const renderGallery = (imgs, openImg) => {
 }
 
 const renderMoreImages = (hiddenCount, galleryMode, switchGallery) => {
-  const plusStyles = ['fas fa-plus-circle', classes.MoreImages]
-  const countStyles = [classes.PhotoGallery__Item__Image_Fake__Count, 'ml-1']
-
-  if (galleryMode) {
-    plusStyles.push(classes.MoreImages_Active)
-    countStyles.push('d-none')
-  }
-
   return (
     <>
       {hiddenCount > 0 && (
-        <Item
-          onClick={() => switchGallery(galleryMode)}
-        >
+        <Item onClick={() => switchGallery(galleryMode)}>
           <FakeImage>
-            <Icon className={plusStyles.join(' ')} icon={faPlusCircle}></Icon>
-            <FakeCount className={countStyles.join(' ')}>{hiddenCount}</FakeCount>
+            <PlusIcon icon={faPlusCircle} active={galleryMode}></PlusIcon>
+            {!galleryMode && <FakeCount>{hiddenCount}</FakeCount>}
           </FakeImage>
         </Item>
       )}

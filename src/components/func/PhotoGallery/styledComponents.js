@@ -30,13 +30,18 @@ export const FakeImage = styled(Image)`
   justify-content: center;
   align-items: center;
   padding: 5px;
-  background-color: ${({theme}) => theme.defColor};
+  background-color: ${({ theme }) => theme.defColor};
+  transition: all 0.25s ease-in-out;
+  &:hover,
+  &:focus,
+  &:active {
+    box-shadow: ${({ theme }) => theme.linkHoverShadow};
+    background: ${({ theme }) => theme.linkHoverBg};
+  }
 `
 
 export const FakeCount = styled.span`
   font-size: 2rem;
   font-family: 'Roboto-Regular';
   color: white;
-  &:hover, &:focus, &:active;
-    box-shadow: 0px 0px 4px 2px rgba(0,122,204,0.5) !important;
 `
