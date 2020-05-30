@@ -1,32 +1,28 @@
 import React from 'react'
-import classes from './Stats.module.sass'
+import styled from 'styled-components'
 
-const Stats = props => {
-  
-  const spanClasses = [classes.Span, 'mr-2'].join(' ')
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import { faEye, faClock, faNewspaper } from '@fortawesome/free-solid-svg-icons'
 
-  return (
-    <>
-      <span className={spanClasses}>
-        <strong>
-          <i className='fas fa-eye'></i>
-        </strong>
-        &nbsp;{props.views}
-      </span>
-      <span className={spanClasses}>
-        <strong>
-          <i className='fab fa-flipboard'></i>
-        </strong>
-        &nbsp;{props.board}
-      </span>
-      <span className={spanClasses}>
-        <strong>
-          <i className='fas fa-clock'></i>
-        </strong>
-        &nbsp;{props.date}
-      </span>
-    </>
-  )
-}
+const Span = styled.span`
+  margin-right: 10px;
+  font-family: 'Roboto-Regular';
+  color: ${({ theme }) => theme.textColor};
+`
 
-export default Stats
+export default ({ views, board, date }) => (
+  <>
+    <Span>
+      <Icon icon={faEye}></Icon>
+      &nbsp;{views}
+    </Span>
+    <Span>
+      <Icon icon={faNewspaper}></Icon>
+      &nbsp;{board}
+    </Span>
+    <Span>
+      <Icon icon={faClock}></Icon>
+      &nbsp;{date}
+    </Span>
+  </>
+)

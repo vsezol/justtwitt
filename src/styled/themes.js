@@ -12,12 +12,12 @@ export const light = {
 
 export const dark = {
   type: 'dark',
-  bgColor: '#252526',
+  bgColor: '#151515',
   defColor: '#37373D',
   textColor: '#CCCCCC',
   linkColor: '#FFFFFF',
   linkHoverBg: '#252526',
   linkHoverShadow: '0px 0px 0px 3px rgba(90, 90, 96, 0.5)',
   tredBorderColor: '#E3E4E8',
-  tredBg: '#000000'
+  tredBg: '#252526'
 }

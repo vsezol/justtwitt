@@ -6,8 +6,8 @@ import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getTred } from '../../../store/actions/tredActionCreators'
 
-// rb
-import { Container } from 'react-bootstrap'
+import Container from '../../../hoc/Container/Container'
+// import { Container } from 'react-bootstrap'
 
 // components
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
