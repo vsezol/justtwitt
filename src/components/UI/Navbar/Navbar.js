@@ -7,6 +7,13 @@ import { ThemeSwitcherContext } from '../../../hoc/ThemeSwitcher/ThemeSwitcher'
 import { DARK_THEME, LIGHT_THEME } from '../../../hoc/ThemeSwitcher/actionTypes'
 import Select from '../Select/Select'
 
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import {
+  faFireAlt,
+  faRssSquare,
+  faLock
+} from '@fortawesome/free-solid-svg-icons'
+
 const Nav = styled.nav`
   position: fixed;
   top: 0;
@@ -29,7 +36,7 @@ const NavContainer = styled.div`
   align-items: center;
 `
 
-const LinkIcon = styled.i`
+const LinkIcon = styled(Icon)`
   transition: 0.15s;
   font-size: 1.7rem;
 `
@@ -66,17 +73,17 @@ const Navbar = () => {
     {
       to: '/',
       text: 'popular',
-      iconClasses: 'fas fa-fire-alt'
+      icon: faFireAlt
     },
     {
       to: '/public',
       text: 'public',
-      iconClasses: 'fas fa-rss-square'
+      icon: faRssSquare
     },
     {
       to: '/private',
       text: 'private',
-      iconClasses: 'fas fa-lock'
+      icon: faLock
     }
   ]
 
@@ -96,13 +103,16 @@ const Navbar = () => {
   return (
     <Nav>
       <NavContainer>
-        {links.map((link, index) => (
-          <NavbarLink key={index} exact to={link.to} activeClassName='active'>
-            <LinkIcon className={link.iconClasses}></LinkIcon>
-            <LinkAlt>&nbsp;{link.text}</LinkAlt>
+        {links.map(({ to, icon, text }, index) => (
+          <NavbarLink key={index} exact to={to} activeClassName='active'>
+            <LinkIcon icon={icon}></LinkIcon>
+            <LinkAlt>&nbsp;{text}</LinkAlt>
           </NavbarLink>
         ))}
-        <Select options={themes} onChange={e => dispatch({ type: e.target.value })}></Select>
+        <Select
+          options={themes}
+          onChange={e => dispatch({ type: e.target.value })}
+        ></Select>
       </NavContainer>
     </Nav>
   )

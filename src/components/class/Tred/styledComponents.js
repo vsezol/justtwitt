@@ -18,8 +18,14 @@ export const Title = styled.h2`
 `
 
 export const Preview = styled.div`
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 10px;
+  font-family: 'Roboto-Regular';
+  color: ${({ theme }) => theme.textColor};
+`
+
+export const Text = styled.div`
+  font-size: 1rem;
   font-family: 'Roboto-Regular';
   color: ${({ theme }) => theme.textColor};
 `

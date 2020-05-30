@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { getTred } from '../../../store/actions/tredActionCreators'
 
 import Container from '../../../hoc/Container/Container'
-// import { Container } from 'react-bootstrap'
+import { Tred as TredContainer, Title, Text } from './styledComponents'
 
 // components
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
@@ -15,7 +15,7 @@ import PhotoGallery from '../../func/PhotoGallery/PhotoGallery'
 import Stats from '../../UI/Stats/Stats'
 
 // styles
-import classes from './Tred.module.sass'
+// import classes from './Tred.module.sass'
 
 import replaceNlToBr from '../../../modules/replaceNlToBr/replaceNlToBr'
 
@@ -27,52 +27,31 @@ class Tred extends Component {
   }
 
   renderTred = () => {
-    // классы для контейнеров в треде
-    const tredContainerClasses = [
-      classes.Tred__Container,
-      'p-4 rounded mb-2'
-    ].join(' ')
-
     return (
-      <div className={classes.Tred}>
-        {/* tred title */}
-        <div
-          className={
-            tredContainerClasses +
-            ' d-flex justify-content-between flex-wrap align-items-center'
-          }
-        >
-          <div className='pb-1 pb-md-0'>
-            <h1 className={classes.Tred__Title}>{this.props.title}</h1>
-          </div>
+      <div style={{ marginTop: 10 }}>
+        <TredContainer>
+          <Title>{this.props.title}</Title>
+          <Stats
+            views={this.props.views}
+            board={this.props.board}
+            date={this.props.date}
+          />
+        </TredContainer>
 
-          <div className='d-flex flex-wrap pb-1 pb-md-0'>
-            <Stats
-              views={this.props.views}
-              board={this.props.board}
-              date={this.props.date}
-            />
-          </div>
-        </div>
+        <TredContainer>
+          <Text>{replaceNlToBr(this.props.text)}</Text>
+        </TredContainer>
 
-        {/* tred text */}
-        <div className={tredContainerClasses}>
-          <p className={classes.Tred__Text + ' m-0'}>
-            {replaceNlToBr(this.props.text)}
-          </p>
-        </div>
-
-        {/* tred gallery */}
-        <div className={tredContainerClasses}>
+        <TredContainer>
           <PhotoGallery imgs={this.props.imgs} />
-        </div>
+        </TredContainer>
       </div>
     )
   }
 
   render() {
     return (
-      <Container className='mt-4 pt-4'>
+      <Container>
         {this.props.loading ? <LoaderContainer /> : this.renderTred()}
       </Container>
     )
