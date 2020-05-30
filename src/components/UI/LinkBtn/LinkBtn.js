@@ -6,7 +6,6 @@ const LinkBtn = styled(Link)`
   display: inline-block;
   padding: 10px;
   border-radius: 5px;
-
   font-size: 1rem;
   font-family: 'Roboto-Italic';
   text-decoration: none;

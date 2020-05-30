@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { light, dark } from '../../components/styled/themes'
+import { light, dark } from '../../styled/themes'
 import { DARK_THEME, LIGHT_THEME } from './actionTypes'
 
 const themeReducer = (theme, action) => {

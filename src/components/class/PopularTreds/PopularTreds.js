@@ -3,11 +3,18 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getPopularTreds } from '../../../store/actions/popularTredsActionCreators'
 
-import { Container } from 'react-bootstrap'
+import Container from '../../../hoc/Container/Container'
 import MicroTred from '../Tred/MicroTred/MicroTred'
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
+import styled from 'styled-components'
 
-import classes from './PopularTreds.module.sass'
+const Title = styled.h1`
+  font-family: 'Roboto-Regular';
+  font-size: 1.6rem;
+  color: ${({theme}) => theme.textColor};
+  margin: 15px 0px 25px 0px;
+  padding: 0px;
+`
 
 class PopularTreds extends Component {
   componentDidMount = async () => this.props.getPopularTreds()
@@ -22,20 +29,14 @@ class PopularTreds extends Component {
 
   render() {
     return (
-      <div className={classes.PopularTreds}>
-        <Container>
-          <div className='pt-4 pb-4'>
-            <h1 className={classes.PopularTreds__Title + ' m-0'}>
-              Популярные треды
-            </h1>
-          </div>
-          {this.props.loading ? (
-            <LoaderContainer />
-          ) : (
-            this.renderTreds(this.props.treds)
-          )}
-        </Container>
-      </div>
+      <Container>
+        <Title>Популярные треды</Title>
+        {this.props.loading ? (
+          <LoaderContainer />
+        ) : (
+          this.renderTreds(this.props.treds)
+        )}
+      </Container>
     )
   }
 }

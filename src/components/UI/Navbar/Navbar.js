@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { minMd } from '../../styled/grid'
+import { minMd } from '../../../styled/grid'
 import { ThemeSwitcherContext } from '../../../hoc/ThemeSwitcher/ThemeSwitcher'
 import { DARK_THEME, LIGHT_THEME } from '../../../hoc/ThemeSwitcher/actionTypes'
 import Select from '../Select/Select'

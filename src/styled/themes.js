@@ -5,7 +5,9 @@ export const light = {
   textColor: '#212529',
   linkColor: '#FFFFFF',
   linkHoverBg: '#005DAF',
-  linkHoverShadow: '0px 0px 0px 3px rgba(0, 122, 204, 0.5)'
+  linkHoverShadow: '0px 0px 0px 3px rgba(0, 122, 204, 0.5)',
+  tredBorderColor: '#E3E4E8',
+  tredBg: '#FFFFFF'
 }
 
 export const dark = {
@@ -15,5 +17,7 @@ export const dark = {
   textColor: '#CCCCCC',
   linkColor: '#FFFFFF',
   linkHoverBg: '#252526',
-  linkHoverShadow: '0px 0px 0px 3px rgba(90, 90, 96, 0.5)'
+  linkHoverShadow: '0px 0px 0px 3px rgba(90, 90, 96, 0.5)',
+  tredBorderColor: '#E3E4E8',
+  tredBg: '#000000'
 }
