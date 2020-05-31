@@ -6,8 +6,8 @@ import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getTred } from '../../../store/actions/tredActionCreators'
 
-import Container from '../../../hoc/Container/Container'
-import { Tred as TredContainer, Title, Text } from './styledComponents'
+import TredContainer from '../../UI/TredContainer/TredContainer'
+import { Title, Text } from './styledComponents'
 
 // components
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
@@ -48,11 +48,7 @@ class Tred extends Component {
   }
 
   render() {
-    return (
-      <Container>
-        {this.props.loading ? <LoaderContainer /> : this.renderTred()}
-      </Container>
-    )
+    return <>{this.props.loading ? <LoaderContainer /> : this.renderTred()}</>
   }
 }
 

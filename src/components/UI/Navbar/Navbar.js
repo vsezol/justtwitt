@@ -17,6 +17,7 @@ import {
 const Nav = styled.nav`
   position: fixed;
   top: 0;
+  z-index: 19;
   width: 100%;
   height: 50px;
   max-height: 50px;

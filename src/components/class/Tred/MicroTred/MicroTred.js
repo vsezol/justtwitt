@@ -1,8 +1,8 @@
 import React from 'react'
 import LinkBtn from '../../../UI/LinkBtn/LinkBtn'
 import Stats from '../../../UI/Stats/Stats'
+import TredContainer from '../../../UI/TredContainer/TredContainer'
 import {
-  Tred,
   Title,
   Preview,
   InfoPanel,
@@ -13,7 +13,7 @@ const MicroTred = props => {
   const limitText = text =>
     text.slice(0, 200).split(' ').slice(0, -1).join(' ') + '...'
   return (
-    <Tred>
+    <TredContainer>
       <Title>{props.tred.title}</Title>
       <Preview>{limitText(props.tred.text)}</Preview>
       <InfoPanel>
@@ -28,7 +28,7 @@ const MicroTred = props => {
           Read more
         </LinkBtn>
       </InfoPanel>
-    </Tred>
+    </TredContainer>
   )
 }
 

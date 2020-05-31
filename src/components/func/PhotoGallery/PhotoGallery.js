@@ -16,7 +16,48 @@ const PlusIcon = styled(Icon)`
   color: ${({ theme }) => theme.linkColor};
   font-size: 2.2rem;
   transition: all 0.25s ease-in-out;
-  transform: ${({ active }) => (active ? 'rotate(-45deg)' : 'rotate(0deg)')};
+  transform: ${({ active }) => (!!active ? 'rotate(-45deg)' : 'rotate(0deg)')};
+`
+
+const ModalOverlay = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0px;
+  left: 0;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+`
+
+const ModalOverlayWrapper = styled.div`
+  max-height: 90%;
+  height: 90%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const ModalClose = styled(Icon)`
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.5rem;
+  cursor: pointer;
+  &:hover {
+    color: rgba(255, 255, 255, 1);
+  }
+`
+
+const ModalImage = styled.img`
+  cursor: pointer;
+  width: 100%;
+  max-height: 100%;
+  object-fit: scale-down;
 `
 
 const spliceImgs = (imgs, count) => [...imgs].splice(0, count)
@@ -42,7 +83,10 @@ const renderMoreImages = (hiddenCount, galleryMode, switchGallery) => {
       {hiddenCount > 0 && (
         <Item onClick={() => switchGallery(galleryMode)}>
           <FakeImage>
-            <PlusIcon icon={faPlusCircle} active={galleryMode}></PlusIcon>
+            <PlusIcon
+              icon={faPlusCircle}
+              active={galleryMode ? '1' : ''}
+            ></PlusIcon>
             {!galleryMode && <FakeCount>{hiddenCount}</FakeCount>}
           </FakeImage>
         </Item>
@@ -53,12 +97,18 @@ const renderMoreImages = (hiddenCount, galleryMode, switchGallery) => {
 
 const renderModalImage = (closeImg, imgSrc) => {
   return (
-    <div className={classes.ModalOverlay} onClick={() => closeImg()}>
-      <Icon className={classes.ModalOverlay__Close} icon={faTimes}></Icon>
-      <div className={classes.ModalOverlay__Wrapper}>
-        <Image className={classes.ModalOverlay__Wrapper__Image} src={imgSrc} />
-      </div>
-    </div>
+    <ModalOverlay onClick={() => closeImg()}>
+      <ModalClose
+        className={classes.ModalOverlay__Close}
+        icon={faTimes}
+      ></ModalClose>
+      <ModalOverlayWrapper>
+        <ModalImage
+          className={classes.ModalOverlay__Wrapper__Image}
+          src={imgSrc}
+        />
+      </ModalOverlayWrapper>
+    </ModalOverlay>
   )
 }
 

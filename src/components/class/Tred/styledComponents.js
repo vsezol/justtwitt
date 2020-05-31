@@ -1,13 +1,6 @@
 import styled from 'styled-components'
 import { minMd } from '../../../styled/grid'
 
-export const Tred = styled.div`
-  margin-bottom: 10px;
-  padding: 20px;
-  background: ${({ theme }) => theme.tredBg};
-  border-radius: 5px;
-`
-
 export const Title = styled.h2`
   margin: 0px;
   padding: 0px;

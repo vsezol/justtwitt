@@ -1,17 +1,52 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+
 import {
   getComments,
   addComment,
   closeComments
 } from '../../../store/actions/commentsActionCreators'
 
-import classes from './Comments.module.sass'
-
 import Comment from '../../func/Comment/Comment'
-import { Container } from 'react-bootstrap'
-
+import TredContainer from '../../UI/TredContainer/TredContainer'
 import CreateComment from '../CreateComment/CreateComment'
+
+import styled from 'styled-components'
+
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons'
+
+const CommentsBlock = styled(TredContainer)`
+  max-height: 70vh;
+  height: auto;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${({theme}) => theme.scrollColor};
+  }
+`
+
+const ScrollBtnBlock = styled.div`
+  position: relative;
+`
+
+const ScrollBtn = styled(Icon)`
+  position: absolute;
+  font-size: 2.1rem;
+  cursor: pointer;
+  bottom: 20px;
+  left: calc(100% - 2.1rem - 10px);
+  transition: color 0.25s;
+  color: ${({theme}) => theme.scrollBtnColor};
+  &:active,
+  &:focus,
+  &:hover {
+    color: ${({theme}) => theme.scrollBtnHoverColor};
+  }
+`
 
 class Comments extends Component {
   state = {
@@ -108,34 +143,30 @@ class Comments extends Component {
   }
 
   render() {
-    const ContainerClasses = [classes.Container, 'p-4 rounded mb-2'].join(' ')
     return (
       <>
         {!this.props.loading && (
-          <Container>
+          <div>
             {!this.props.error && this.props.comments.length > 0 && (
-              <div
-                className={ContainerClasses + ' ' + classes.Comments}
+              <CommentsBlock
                 ref={this.commentsRef}
                 onScroll={this.scrollHandler}
               >
                 {this.renderComments()}
-              </div>
+              </CommentsBlock>
             )}
-            <div className={classes.Comments__ScrollBtnBlock}>
+            <ScrollBtnBlock>
               {this.checkCommentHeight() && this.state.isScrollNeeded && (
-                <i
-                  className={
-                    classes.Comments__ScrollBtn + ' fas fa-chevron-circle-down'
-                  }
+                <ScrollBtn
+                  icon={faChevronCircleDown}
                   onClick={this.scrollToMessagesEnd}
-                ></i>
+                ></ScrollBtn>
               )}
-            </div>
-            <div className={ContainerClasses}>
+            </ScrollBtnBlock>
+            <TredContainer>
               <CreateComment onSubmit={this.addCommentHamdler} />
-            </div>
-          </Container>
+            </TredContainer>
+          </div>
         )}
       </>
     )

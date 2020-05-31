@@ -7,7 +7,11 @@ export const light = {
   linkHoverBg: '#005DAF',
   linkHoverShadow: '0px 0px 0px 3px rgba(0, 122, 204, 0.5)',
   tredBorderColor: '#E3E4E8',
-  tredBg: '#FFFFFF'
+  tredBg: '#FFFFFF',
+  scrollColor: '#007ACC',
+  scrollBtnColor: 'rgba(0, 122, 204, 0.8)',
+  scrollBtnHoverColor: 'rgba(0, 122, 204, 1.0)',
+  commentTextBg: '#edeef0'
 }
 
 export const dark = {
@@ -19,5 +23,9 @@ export const dark = {
   linkHoverBg: '#4E4E54',
   linkHoverShadow: '0px 0px 0px 3px rgba(85, 85, 85, 0.5)',
   tredBorderColor: '#E3E4E8',
-  tredBg: '#252526'
+  tredBg: '#252526',
+  scrollColor: '#808080',
+  scrollBtnColor: 'rgba(128, 128, 134, 0.8)',
+  scrollBtnHoverColor: 'rgba(128, 128, 134, 1.0)',
+  commentTextBg: '#37373D'
 }

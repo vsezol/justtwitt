@@ -1,8 +1,48 @@
 import React, { useState } from 'react'
-import { Image } from 'react-bootstrap'
 import avatarImg from './avatar.svg'
-import classes from './Comment.module.sass'
 import replaceNlToBr from '../../../modules/replaceNlToBr/replaceNlToBr'
+import styled from 'styled-components'
+
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import { faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
+
+const Avatar = styled.img`
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 100%;
+  margin-right: 15px;
+`
+
+const CommentBlock = styled.div`
+  display: flex;
+  padding: 5px;
+`
+
+const CommentInner = styled.div`
+  cursor: pointer;
+`
+
+const CommentText = styled.p`
+  font-size: 1rem;
+  font-family: 'Roboto-Regular';
+  word-break: break-word;
+  background: ${({ theme }) => theme.commentTextBg};
+  color: ${({ theme }) => theme.textColor};
+  width: auto;
+  margin: 0;
+  padding: 5px;
+  border-radius: 5px;
+`
+
+const Toggler = styled.span`
+  cursor: pointer;
+  height: auto;
+  position: relative;
+  padding-left: 5px;
+  left: calc(100% - 1.5rem);
+`
 
 const limitText = text => text.split('\n').slice(0, 3).join('\n').slice(0, 350)
 
@@ -45,31 +85,25 @@ const Comment = props => {
   }
 
   return (
-    <div className={classes.Comment + ' p-1'}>
-      <Image
-        width={32}
-        height={32}
-        className={classes.Comment__Avatar + ' mr-3'}
-        roundedCircle
-        src={avatarImg}
-      />
-      <div onClick={toggleComment} style={{ cursor: 'pointer' }}>
-        <p className={classes.Comment__Text + ' m-0 p-1 rounded'}>
+    <CommentBlock>
+      <Avatar src={avatarImg} />
+      <CommentInner onClick={toggleComment}>
+        <CommentText>
           {isBig && !commentMode
             ? replaceNlToBr(commentText + '...')
             : replaceNlToBr(commentText)}
           {isBig && (
-            <span className={classes.Toggler}>
+            <Toggler>
               {commentMode ? (
-                <i className='fas fa-toggle-on'></i>
+                <Icon icon={faToggleOn} />
               ) : (
-                <i className='fas fa-toggle-off'></i>
+                <Icon icon={faToggleOff} />
               )}
-            </span>
+            </Toggler>
           )}
-        </p>
-      </div>
-    </div>
+        </CommentText>
+      </CommentInner>
+    </CommentBlock>
   )
 }
 
