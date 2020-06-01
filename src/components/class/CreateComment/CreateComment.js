@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react'
+import React, { Component } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
 import isMobileDevice from '../../../modules/isMobileDevice/isMobileDevice'
 import filterNl from '../../../modules/filterNl/filterNl'
@@ -11,27 +11,22 @@ const SendBtn = styled(Icon)`
   padding: 3px;
   margin: 0px;
   font-size: 2.1rem;
-  transition: color 0.25s;
-  color: ${({ theme }) => theme.scrollBtnColor};
+  transition: opacity 0.25s ease-in-out;
   cursor: pointer;
   align-self: flex-end;
+  color: ${({ theme }) => theme.scrollBtnHoverColor};
+  opacity: ${({ isEnabled }) => (!!isEnabled ? '1.' : '.6')};
 `
 
 const CreateCommentBlock = styled.div`
-  border: 2px solid ${({ theme }) => theme.scrollBtnColor};
-  transition: border 0.25s;
+  border: 2px solid
+    ${({ isenabled, theme }) =>
+      !!isenabled ? theme.scrollBtnHoverColor : theme.scrollBtnColor};
+  transition: border 0.25s ease-in-out;
   border-radius: 5px;
   width: 100%;
   display: flex;
   align-items: center;
-  &:active,
-  &:focus,
-  &:hover {
-    border: 2px solid ${({ theme }) => theme.scrollBtnHoverColor};
-  }
-  ${({ isActive }) => console.log(isActive)} && ${SendBtn} {
-    color: ${({ theme }) => theme.scrollBtnHoverColor};
-  }
 `
 
 const TextArea = styled(TextareaAutosize)`
@@ -53,60 +48,66 @@ const TextArea = styled(TextareaAutosize)`
     outline: none;
     box-shadow: none;
   }
+  &::placeholder {
+    font-family: 'Roboto-Regular';
+    color: ${({ theme }) => theme.textColor};
+  }
 `
 
 class CreateComment extends Component {
   state = {
     commentText: '',
-    warning: null,
-    target: null
+    isBtnEnabled: false
   }
-
-  sendRef = createRef()
 
   onCommentChangeHandler = event => {
     const text = event.currentTarget.value
-    const target = this.sendRef.current
-    if (text.length <= 1000) {
+    if (text.length >= 1 && text.length <= 1000) {
       this.setState(() => ({
-        commentText: text
+        commentText: text,
+        isBtnEnabled: true
       }))
     } else {
-      this.setState(() => ({ warning: 'Maximum size 1000', target }))
+      this.setState(() => ({ commentText: text, isBtnEnabled: false }))
     }
   }
 
   handleKeyPress = event => {
-    if (event.key === 'Enter' && !event.shiftKey && !isMobileDevice()) {
-      this.onSubmitHandler()
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault()
+      if (!isMobileDevice() && this.state.isBtnEnabled) {
+        this.onSubmitHandler()
+      }
     }
   }
 
   onSubmitHandler = () => {
-    const target = this.sendRef.current
     const text = filterNl(this.state.commentText).trim()
     if (text) {
       this.props.onSubmit(text)
-      this.setState(() => ({ commentText: '', target, warning: null }))
+      this.setState(() => ({ commentText: '', isEnabled: false }))
     } else {
-      this.setState(() => ({ warning: 'You can not send a void', target }))
+      this.setState(() => ({ isEnabled: false }))
     }
   }
 
   render() {
     return (
-      <CreateCommentBlock isActive={!!this.state.commentText}>
+      <CreateCommentBlock
+        isActive={!!this.state.commentText}
+        isenabled={this.state.isBtnEnabled ? '1' : ''}
+      >
         <TextArea
           placeholder='Write a comment ...'
           value={this.state.commentText}
           onChange={this.onCommentChangeHandler}
-          onKeyUp={this.handleKeyPress}
+          onKeyDown={this.handleKeyPress}
           maxRows={10}
         />
         <SendBtn
           icon={faChevronCircleRight}
           onClick={this.onSubmitHandler}
-          ref={this.sendRef}
+          isenabled={this.state.isBtnEnabled ? '1' : ''}
         />
       </CreateCommentBlock>
     )

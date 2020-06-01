@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import classes from './PhotoGallery.module.sass'
 import {
   Item,
   Image,
@@ -98,15 +97,9 @@ const renderMoreImages = (hiddenCount, galleryMode, switchGallery) => {
 const renderModalImage = (closeImg, imgSrc) => {
   return (
     <ModalOverlay onClick={() => closeImg()}>
-      <ModalClose
-        className={classes.ModalOverlay__Close}
-        icon={faTimes}
-      ></ModalClose>
+      <ModalClose icon={faTimes}></ModalClose>
       <ModalOverlayWrapper>
-        <ModalImage
-          className={classes.ModalOverlay__Wrapper__Image}
-          src={imgSrc}
-        />
+        <ModalImage src={imgSrc} />
       </ModalOverlayWrapper>
     </ModalOverlay>
   )
