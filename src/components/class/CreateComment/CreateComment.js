@@ -11,11 +11,11 @@ const SendBtn = styled(Icon)`
   padding: 3px;
   margin: 0px;
   font-size: 2.1rem;
-  transition: opacity 0.25s ease-in-out;
+  transition: color 0.25s ease-in-out;
   cursor: pointer;
   align-self: flex-end;
-  color: ${({ theme }) => theme.scrollBtnHoverColor};
-  opacity: ${({ isEnabled }) => (!!isEnabled ? '1.' : '.6')};
+  color: ${({ isenabled, theme }) =>
+    !!isenabled ? theme.scrollBtnHoverColor : theme.scrollBtnColor};
 `
 
 const CreateCommentBlock = styled.div`
