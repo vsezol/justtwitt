@@ -27,6 +27,7 @@ const CommentsBlock = styled(TredContainer)`
     background-color: transparent;
   }
   &::-webkit-scrollbar-thumb {
+    border-radius: 50px;
     background: ${({theme}) => theme.scrollColor};
   }
 `
