@@ -1,9 +1,59 @@
 import React, { Component, createRef } from 'react'
-import classes from './CreateComment.module.sass'
 import TextareaAutosize from 'react-textarea-autosize'
-import { Overlay, Tooltip } from 'react-bootstrap'
 import isMobileDevice from '../../../modules/isMobileDevice/isMobileDevice'
 import filterNl from '../../../modules/filterNl/filterNl'
+
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
+import styled from 'styled-components'
+
+const SendBtn = styled(Icon)`
+  padding: 3px;
+  margin: 0px;
+  font-size: 2.1rem;
+  transition: color 0.25s;
+  color: ${({ theme }) => theme.scrollBtnColor};
+  cursor: pointer;
+  align-self: flex-end;
+`
+
+const CreateCommentBlock = styled.div`
+  border: 2px solid ${({ theme }) => theme.scrollBtnColor};
+  transition: border 0.25s;
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  &:active,
+  &:focus,
+  &:hover {
+    border: 2px solid ${({ theme }) => theme.scrollBtnHoverColor};
+  }
+  ${({ isActive }) => console.log(isActive)} && ${SendBtn} {
+    color: ${({ theme }) => theme.scrollBtnHoverColor};
+  }
+`
+
+const TextArea = styled(TextareaAutosize)`
+  outline: none;
+  box-shadow: none;
+  font-family: 'Roboto-Regular';
+  box-sizing: border-box;
+  resize: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: 0px;
+  font-size: 1rem;
+  background: ${({ theme }) => theme.tredBg};
+  color: ${({ theme }) => theme.textColor};
+  &:active,
+  &:focus,
+  &:hover {
+    outline: none;
+    box-shadow: none;
+  }
+`
 
 class CreateComment extends Component {
   state = {
@@ -45,45 +95,20 @@ class CreateComment extends Component {
 
   render() {
     return (
-      <div
-        className={classes.CreateComment + ' w-100 d-flex align-items-center'}
-      >
-        <Overlay
-          target={this.state.target}
-          show={!!this.state.warning}
-          placement='left'
-        >
-          <Tooltip
-            className={classes.CreateComment__Warning}
-            onClick={() =>
-              this.setState(() => ({
-                warning: null
-              }))
-            }
-          >
-            {this.state.warning}
-          </Tooltip>
-        </Overlay>
-        <TextareaAutosize
+      <CreateCommentBlock isActive={!!this.state.commentText}>
+        <TextArea
           placeholder='Write a comment ...'
-          className={
-            classes.CreateComment__TextArea +
-            ' rounded-0 border-0 w-100 textarea p-2'
-          }
           value={this.state.commentText}
           onChange={this.onCommentChangeHandler}
           onKeyUp={this.handleKeyPress}
           maxRows={10}
         />
-        <i
-          className={
-            classes.CreateComment__SendButton +
-            ' fas fa-chevron-circle-right rounded-circle'
-          }
+        <SendBtn
+          icon={faChevronCircleRight}
           onClick={this.onSubmitHandler}
           ref={this.sendRef}
-        ></i>
-      </div>
+        />
+      </CreateCommentBlock>
     )
   }
 }

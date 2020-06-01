@@ -11,7 +11,7 @@ export const light = {
   scrollColor: '#007ACC',
   scrollBtnColor: 'rgba(0, 122, 204, 0.8)',
   scrollBtnHoverColor: 'rgba(0, 122, 204, 1.0)',
-  commentTextBg: '#edeef0'
+  commentTextBg: '#EDEEF0'
 }
 
 export const dark = {
@@ -25,7 +25,7 @@ export const dark = {
   tredBorderColor: '#E3E4E8',
   tredBg: '#252526',
   scrollColor: '#808080',
-  scrollBtnColor: 'rgba(128, 128, 134, 0.8)',
-  scrollBtnHoverColor: 'rgba(128, 128, 134, 1.0)',
+  scrollBtnColor: '#808080',
+  scrollBtnHoverColor: '#B2B2B2',
   commentTextBg: '#37373D'
 }
