@@ -43,5 +43,5 @@ export const pank = {
   scrollColor: '#E25D12',
   scrollBtnColor: 'rgba(197, 64, 15, 0.6)',
   scrollBtnHoverColor: 'rgba(197, 64, 15, 1.0)',
-  commentTextBg: '#000000'
+  commentTextBg: '#283C3B'
 }
