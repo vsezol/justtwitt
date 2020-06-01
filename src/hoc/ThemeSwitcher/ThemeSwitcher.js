@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react'
 import { ThemeProvider } from 'styled-components'
-import { light, dark } from '../../styled/themes'
-import { DARK_THEME, LIGHT_THEME } from './actionTypes'
+import { light, dark, pank } from '../../styled/themes'
+import { DARK_THEME, LIGHT_THEME, PANK_THEME } from './actionTypes'
 
 const themeReducer = (theme, action) => {
   switch (action.type) {
@@ -9,6 +9,8 @@ const themeReducer = (theme, action) => {
       return dark
     case LIGHT_THEME:
       return light
+    case PANK_THEME:
+      return pank
     default:
       return theme
   }

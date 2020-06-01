@@ -13,5 +13,3 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 export default firebase.database()
-// const databaseRef = firebase.database().ref()
-// export const commentsRef = databaseRef.child('todos')

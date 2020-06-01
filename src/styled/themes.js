@@ -29,3 +29,19 @@ export const dark = {
   scrollBtnHoverColor: 'rgba(178, 178, 178, 1.0)',
   commentTextBg: '#37373D'
 }
+
+export const pank = {
+  type: 'pank',
+  bgColor: '#283C3B',
+  defColor: '#E25D12',
+  textColor: '#CCCCCC',
+  linkColor: '#FFFFFF',
+  linkHoverBg: '#C5400F',
+  linkHoverShadow: '0px 0px 0px 3px rgba(197, 64, 15, 0.5)',
+  tredBorderColor: '#E3E4E8',
+  tredBg: '#141817',
+  scrollColor: '#E25D12',
+  scrollBtnColor: 'rgba(197, 64, 15, 0.6)',
+  scrollBtnHoverColor: 'rgba(197, 64, 15, 1.0)',
+  commentTextBg: '#000000'
+}

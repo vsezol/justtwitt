@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { minMd } from '../../../styled/grid'
 import { ThemeSwitcherContext } from '../../../hoc/ThemeSwitcher/ThemeSwitcher'
-import { DARK_THEME, LIGHT_THEME } from '../../../hoc/ThemeSwitcher/actionTypes'
+import { DARK_THEME, LIGHT_THEME, PANK_THEME } from '../../../hoc/ThemeSwitcher/actionTypes'
 import Select from '../Select/Select'
 
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
@@ -96,6 +96,10 @@ const Navbar = () => {
     {
       value: DARK_THEME,
       label: 'Dark'
+    },
+    {
+      value: PANK_THEME,
+      label: 'Pank'
     }
   ]
 
