@@ -16,6 +16,8 @@ import styled from 'styled-components'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons'
 
+import defAvatar from './defAv.svg'
+
 const CommentsBlock = styled(TredContainer)`
   max-height: 70vh;
   height: auto;
@@ -132,6 +134,7 @@ class Comments extends Component {
         index={index}
         key={index}
         len={len}
+        avatarSrc={defAvatar}
         text={comment.text}
       />
     ))

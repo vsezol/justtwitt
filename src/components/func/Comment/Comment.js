@@ -1,12 +1,5 @@
 import React, { useState } from 'react'
 
-import av1 from './av1.svg'
-import av2 from './av2.svg'
-import av3 from './av3.svg'
-import av4 from './av4.svg'
-import av5 from './av5.svg'
-import av6 from './av6.svg'
-
 import replaceNlToBr from '../../../modules/replaceNlToBr/replaceNlToBr'
 import styled from 'styled-components'
 
@@ -51,12 +44,6 @@ const Toggler = styled.span`
   left: calc(100% - 1.5rem);
 `
 
-const getRandomAvatar = () => {
-  const avatars = [av1, av2, av3, av4, av5, av6]
-  const randomIndex = Math.round(Math.random() * (avatars.length - 1))
-  return avatars[randomIndex]
-}
-
 const limitText = text => text.split('\n').slice(0, 3).join('\n').slice(0, 350)
 
 let isBig = false
@@ -99,7 +86,7 @@ const Comment = props => {
 
   return (
     <CommentBlock>
-      <Avatar src={getRandomAvatar()} />
+      <Avatar src={props.avatarSrc} />
       <CommentInner onClick={toggleComment}>
         <CommentText>
           {isBig && !commentMode
