@@ -19,7 +19,7 @@ import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons'
 import defAvatar from './defAv.svg'
 
 const CommentsBlock = styled(TredContainer)`
-  max-height: 70vh;
+  max-height: 65vh;
   height: auto;
   overflow-y: scroll;
   &::-webkit-scrollbar {
@@ -94,7 +94,7 @@ class Comments extends Component {
     if (!!commentsBlock) {
       const scrollHeight = commentsBlock.scrollHeight
       const scrollTop = commentsBlock.scrollTop
-      const height = window.innerHeight * 0.7
+      const height = window.innerHeight * 0.65
       return Math.abs(scrollHeight - scrollTop - height) < maxHeight
     }
   }
@@ -120,7 +120,7 @@ class Comments extends Component {
     const commentsBlock = this.commentsRef.current
     if (!!commentsBlock) {
       const height = commentsBlock.scrollHeight
-      return height > window.innerHeight * 0.7
+      return height > window.innerHeight * 0.65
     } else {
       return false
     }

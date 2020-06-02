@@ -6,6 +6,7 @@ const Select = styled.select`
   top: 55px;
   padding: 5px;
   right: 5px;
+  border-radius: 5px;
   background: ${({ theme }) => theme.defColor};
   color: ${({ theme }) => theme.linkColor};
   font-size: 1rem;
