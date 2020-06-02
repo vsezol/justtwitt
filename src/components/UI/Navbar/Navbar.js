@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import { minMd } from '../../../styled/grid'
 import { ThemeSwitcherContext } from '../../../hoc/ThemeSwitcher/ThemeSwitcher'
-import { DARK_THEME, LIGHT_THEME, PANK_THEME } from '../../../hoc/ThemeSwitcher/actionTypes'
 import Select from '../Select/Select'
 
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
@@ -88,22 +87,12 @@ const Navbar = () => {
     }
   ]
 
-  const themes = [
-    {
-      value: LIGHT_THEME,
-      label: 'Light'
-    },
-    {
-      value: DARK_THEME,
-      label: 'Dark'
-    },
-    {
-      value: PANK_THEME,
-      label: 'Pank'
-    }
-  ]
+  const { dispatch, themes } = useContext(ThemeSwitcherContext)
 
-  const dispatch = useContext(ThemeSwitcherContext)
+  const onChangeThemeHandler = event => {
+    const newThemeType = event.target.value
+    dispatch({ type: newThemeType })
+  } 
 
   return (
     <Nav>
@@ -116,7 +105,7 @@ const Navbar = () => {
         ))}
         <Select
           options={themes}
-          onChange={e => dispatch({ type: e.target.value })}
+          onChange={onChangeThemeHandler}
         ></Select>
       </NavContainer>
     </Nav>

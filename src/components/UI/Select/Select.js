@@ -23,7 +23,7 @@ const Option = styled.option`
 export default ({ options, onChange }) => {
   return (
     <Select onChange={onChange}>
-      {options.map(({ value, label }, index) => (
+      {options.map(([value, label], index) => (
         <Option key={index} value={value}>
           {label}
         </Option>
