@@ -52,6 +52,14 @@ const TextArea = styled(TextareaAutosize)`
     font-family: 'Roboto-Regular';
     color: ${({ theme }) => theme.textColor};
   }
+  &::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 50px;
+    background: ${({theme}) => theme.scrollColor};
+  }
 `
 
 class CreateComment extends Component {
@@ -62,11 +70,13 @@ class CreateComment extends Component {
 
   onCommentChangeHandler = event => {
     const text = event.currentTarget.value
-    if (text.length >= 0 && text.length <= 2000) {
+    if (text.length >= 1 && text.length <= 2000) {
       this.setState(() => ({
         commentText: text,
         isBtnEnabled: true
       }))
+    } else if (text.length < 1 ) {
+      this.setState(() => ({ commentText: '', isBtnEnabled: false }))
     } else {
       this.setState(() => ({ isBtnEnabled: false }))
     }
@@ -83,7 +93,7 @@ class CreateComment extends Component {
 
   onSubmitHandler = () => {
     const text = filterNl(this.state.commentText).trim()
-    if (text) {
+    if (text && this.state.isBtnEnabled) {
       this.props.onSubmit(text)
       this.setState(() => ({ commentText: '', isEnabled: false }))
     } else {
