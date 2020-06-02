@@ -62,13 +62,13 @@ class CreateComment extends Component {
 
   onCommentChangeHandler = event => {
     const text = event.currentTarget.value
-    if (text.length >= 1 && text.length <= 1000) {
+    if (text.length >= 0 && text.length <= 2000) {
       this.setState(() => ({
         commentText: text,
         isBtnEnabled: true
       }))
     } else {
-      this.setState(() => ({ commentText: text, isBtnEnabled: false }))
+      this.setState(() => ({ isBtnEnabled: false }))
     }
   }
 
