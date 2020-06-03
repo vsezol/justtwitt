@@ -1,10 +1,17 @@
 import React, { useEffect } from 'react'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
-import { Container, Row, Col } from 'react-bootstrap'
-import classes from './PublicTreds.module.sass'
-import LinkBtn from '../../UI/LinkBtn/LinkBtn'
+
 import { getBoardsList } from '../../../store/actions/publicTredsActionCreators'
+
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
+import Container from '../../../hoc/Container/Container'
+import LinkBtn from '../../UI/LinkBtn/LinkBtn'
+import PageTitle from '../../UI/PageTitle/PageTitle'
+import styled from 'styled-components'
+
+const BoardsGrid = styled.div`
+  display: grid;
+`
 
 const PublicTreds = () => {
   const { loading, boardsList, error } = useSelector(
@@ -19,23 +26,25 @@ const PublicTreds = () => {
 
   const renderBoards = boards =>
     Object.keys(boards).map((name, index) => (
-      <Col xs={6} sm={4} md={3} lg={2} key={index} className='p-2'>
+      <div xs={6} sm={4} md={3} lg={2} key={index} className='p-2'>
         <LinkBtn to={boards[name]}>{name}</LinkBtn>
-      </Col>
+      </div>
     ))
 
   return (
     <Container>
-      <div className='pt-4'>
-        <h1 className={classes.PublicTreds__Title + ' m-0'}>Публичные треды</h1>
-      </div>
+      <PageTitle>Публичные треды</PageTitle>
       {loading ? (
         <LoaderContainer />
       ) : (
-        <div className='p-4 mb-2'>
-          {error && <p>Something is wrong <b>;(</b></p>}
-          <Row>{renderBoards(boardsList)}</Row>
-        </div>
+        <BoardsGrid>
+          {error && (
+            <p>
+              Something is wrong <b>;(</b>
+            </p>
+          )}
+          <div>{renderBoards(boardsList)}</div>
+        </BoardsGrid>
       )}
     </Container>
   )

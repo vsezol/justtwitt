@@ -6,15 +6,7 @@ import { getPopularTreds } from '../../../store/actions/popularTredsActionCreato
 import Container from '../../../hoc/Container/Container'
 import MicroTred from '../Tred/MicroTred/MicroTred'
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
-import styled from 'styled-components'
-
-const Title = styled.h1`
-  font-family: 'Roboto-Regular';
-  font-size: 1.6rem;
-  color: ${({theme}) => theme.textColor};
-  margin: 15px 0px 25px 0px;
-  padding: 0px;
-`
+import PageTitle from '../../UI/PageTitle/PageTitle'
 
 class PopularTreds extends Component {
   componentDidMount = async () => this.props.getPopularTreds()
@@ -30,7 +22,7 @@ class PopularTreds extends Component {
   render() {
     return (
       <Container>
-        <Title>Популярные треды</Title>
+        <PageTitle>Популярные треды</PageTitle>
         {this.props.loading ? (
           <LoaderContainer />
         ) : (
