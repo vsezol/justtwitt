@@ -43,12 +43,7 @@ const ScrollBtn = styled(Icon)`
   bottom: 20px;
   left: calc(100% - 2.1rem - 10px);
   transition: color 0.25s;
-  color: ${({theme}) => theme.scrollBtnColor};
-  &:active,
-  &:focus,
-  &:hover {
-    color: ${({theme}) => theme.scrollBtnHoverColor};
-  }
+  color: ${({theme}) => theme.scrollColor};
 `
 
 class Comments extends Component {

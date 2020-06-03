@@ -11,17 +11,15 @@ const SendBtn = styled(Icon)`
   padding: 3px;
   margin: 0px;
   font-size: 2.1rem;
-  transition: color 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
   cursor: pointer;
   align-self: flex-end;
-  color: ${({ isenabled, theme }) =>
-    !!isenabled ? theme.scrollBtnHoverColor : theme.scrollBtnColor};
+  color: ${({ theme }) => theme.scrollColor};
+  opacity: ${({ isenabled }) => (!!isenabled ? '1.0' : '0.3')};
 `
 
 const CreateCommentBlock = styled.div`
-  border: 2px solid
-    ${({ isenabled, theme }) =>
-      !!isenabled ? theme.scrollBtnHoverColor : theme.scrollBtnColor};
+  border: 2px solid ${({ theme }) => theme.scrollColor};
   transition: border 0.25s ease-in-out;
   border-radius: 5px;
   width: 100%;
@@ -52,14 +50,14 @@ const TextArea = styled(TextareaAutosize)`
     font-family: 'Roboto-Regular';
     color: ${({ theme }) => theme.textColor};
   }
-  &::-webkit-scrollbar {
-    width: 5px;
-    background-color: transparent;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 50px;
-    background: ${({theme}) => theme.scrollColor};
-  }
+  // &::-webkit-scrollbar {
+  //   width: 5px;
+  //   background-color: transparent;
+  // }
+  // &::-webkit-scrollbar-thumb {
+  //   border-radius: 50px;
+  //   background: ${({ theme }) => theme.scrollColor};
+  // }
 `
 
 class CreateComment extends Component {
@@ -75,7 +73,7 @@ class CreateComment extends Component {
         commentText: text,
         isBtnEnabled: true
       }))
-    } else if (text.length < 1 ) {
+    } else if (text.length < 1) {
       this.setState(() => ({ commentText: '', isBtnEnabled: false }))
     } else {
       this.setState(() => ({ isBtnEnabled: false }))
@@ -83,9 +81,9 @@ class CreateComment extends Component {
   }
 
   handleKeyPress = event => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === 'Enter' && !event.shiftKey && !isMobileDevice()) {
       event.preventDefault()
-      if (!isMobileDevice() && this.state.isBtnEnabled) {
+      if (this.state.isBtnEnabled) {
         this.onSubmitHandler()
       }
     }

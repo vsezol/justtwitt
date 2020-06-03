@@ -19,7 +19,6 @@ const GlobalStyle = createGlobalStyle`
       }
       &::-webkit-scrollbar-thumb {
         background: ${({ theme }) => theme.defColor};
-        // border-radius: 50px;
       }
     }
   }

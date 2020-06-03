@@ -21,6 +21,7 @@ export const ThemeSwitcherContext = createContext()
 
 export const ThemeSwitcherProvider = ({ children }) => {
   const [theme, dispatch] = useReducer(themeReducer, light)
+  
   const [themes, setThemes] = useState([
     [LIGHT_THEME, 'Light'],
     [DARK_THEME, 'Dark'],
