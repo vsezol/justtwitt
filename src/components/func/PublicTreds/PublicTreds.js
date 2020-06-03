@@ -3,14 +3,21 @@ import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 
 import { getBoardsList } from '../../../store/actions/publicTredsActionCreators'
 
+import styled from 'styled-components'
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 import Container from '../../../hoc/Container/Container'
 import LinkBtn from '../../UI/LinkBtn/LinkBtn'
 import PageTitle from '../../UI/PageTitle/PageTitle'
-import styled from 'styled-components'
+import ErrorMessage from '../../UI/ErrorMessage/ErrorMessage'
 
 const BoardsGrid = styled.div`
   display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 10px;
+`
+
+const Board = styled.div`
+  width: 100%;
 `
 
 const PublicTreds = () => {
@@ -26,9 +33,11 @@ const PublicTreds = () => {
 
   const renderBoards = boards =>
     Object.keys(boards).map((name, index) => (
-      <div xs={6} sm={4} md={3} lg={2} key={index} className='p-2'>
-        <LinkBtn to={boards[name]}>{name}</LinkBtn>
-      </div>
+      <Board key={index}>
+        <LinkBtn to={boards[name]} width='100%'>
+          {name}
+        </LinkBtn>
+      </Board>
     ))
 
   return (
@@ -38,12 +47,13 @@ const PublicTreds = () => {
         <LoaderContainer />
       ) : (
         <BoardsGrid>
-          {error && (
-            <p>
+          {error ? (
+            <ErrorMessage>
               Something is wrong <b>;(</b>
-            </p>
+            </ErrorMessage>
+          ) : (
+            renderBoards(boardsList)
           )}
-          <div>{renderBoards(boardsList)}</div>
         </BoardsGrid>
       )}
     </Container>

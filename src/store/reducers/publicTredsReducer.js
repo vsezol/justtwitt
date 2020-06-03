@@ -7,7 +7,7 @@ import {
 const initialState = {
   loading: true,
   boardsList: null,
-  error: null
+  error: false
 }
 
 const handlers = {

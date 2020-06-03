@@ -11,7 +11,8 @@ export const light = {
   scrollColor: '#007ACC',
   scrollBtnColor: 'rgba(0, 122, 204, 0.6)',
   scrollBtnHoverColor: 'rgba(0, 122, 204, 1.0)',
-  commentTextBg: '#EDEEF0'
+  commentTextBg: '#EDEEF0',
+  errorColor: '#684FE1'
 }
 
 export const dark = {
@@ -27,7 +28,8 @@ export const dark = {
   scrollColor: '#808080',
   scrollBtnColor: 'rgba(178, 178, 178, 0.6)',
   scrollBtnHoverColor: 'rgba(178, 178, 178, 1.0)',
-  commentTextBg: '#37373D'
+  commentTextBg: '#37373D',
+  errorColor: '#3EBBE1'
 }
 
 export const pank = {
@@ -43,5 +45,6 @@ export const pank = {
   scrollColor: '#E25D12',
   scrollBtnColor: 'rgba(197, 64, 15, 0.6)',
   scrollBtnHoverColor: 'rgba(197, 64, 15, 1.0)',
-  commentTextBg: '#283C3B'
+  commentTextBg: '#283C3B',
+  errorColor: '#E1D642'
 }
