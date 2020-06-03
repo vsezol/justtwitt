@@ -45,8 +45,10 @@ const Toggler = styled.span`
   padding-left: 5px;
   left: calc(100% - 1.5rem);
 `
-
-const rowLength = Math.round(getMaxContWidth(window.innerWidth) / (16 / 2))
+// 32 - avatar width | 15 - avatar padding | 60 - comments padding | 16 ~ 1rem
+const rowLength = Math.round(
+  (getMaxContWidth(window.innerWidth) - (32 + 15 + 60)) / (16 / 1.6)
+)
 const maxRows = 3
 const maxTextLength = rowLength * maxRows
 
@@ -98,9 +100,10 @@ const Comment = props => {
       <Avatar src={props.avatarSrc} />
       <CommentInner onClick={toggleComment}>
         <CommentText>
-          {isBig && !commentMode
+          {/* {isBig && !commentMode
             ? replaceNlToBr(commentText + '...')
-            : replaceNlToBr(commentText)}
+            : replaceNlToBr(commentText)} */}
+          {replaceNlToBr(commentText)}
           {isBig && (
             <Toggler>
               {commentMode ? (
