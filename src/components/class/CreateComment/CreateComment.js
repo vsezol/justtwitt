@@ -50,6 +50,7 @@ const TextArea = styled(TextareaAutosize)`
     font-family: 'Roboto-Regular';
     color: ${({ theme }) => theme.textColor};
   }
+  overflow: hidden;
   // &::-webkit-scrollbar {
   //   width: 5px;
   //   background-color: transparent;
