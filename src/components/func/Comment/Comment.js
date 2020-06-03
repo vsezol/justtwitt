@@ -6,6 +6,8 @@ import styled from 'styled-components'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faToggleOn, faToggleOff } from '@fortawesome/free-solid-svg-icons'
 
+import { getMaxContWidth } from '../../../styled/utils'
+
 const Avatar = styled.img`
   width: 32px;
   height: 32px;
@@ -44,17 +46,21 @@ const Toggler = styled.span`
   left: calc(100% - 1.5rem);
 `
 
-const limitText = text => text.split('\n').slice(0, 3).join('\n').slice(0, 350)
+const rowLength = Math.round(getMaxContWidth(window.innerWidth) / (16 / 2))
+const maxRows = 3
+const maxTextLength = rowLength * maxRows
+
+const limitText = text =>
+  text.split('\n').slice(0, maxRows).join('\n').slice(0, maxTextLength)
 
 let isBig = false
-
 const initLimitText = text => {
-  if (text.split('\n').length > 3 || text.length > 350) {
+  if (text.split('\n').length > maxRows || text.length > maxTextLength) {
     isBig = true
   } else {
     isBig = false
   }
-  if (text.split('\n').length >= 3 || text.length > 350) {
+  if (text.split('\n').length >= maxRows || text.length > maxTextLength) {
     return limitText(text)
   } else {
     return text
@@ -67,7 +73,10 @@ const Comment = props => {
   const [commentText, setCommentText] = useState(initLimitText(props.text))
 
   const handleText = (text, commentMode) => {
-    if ((text.split('\n').length >= 3 || text.length > 350) && !commentMode) {
+    if (
+      (text.split('\n').length >= maxRows || text.length > maxTextLength) &&
+      !commentMode
+    ) {
       setCommentText(limitText(text))
     } else {
       setCommentText(text)
