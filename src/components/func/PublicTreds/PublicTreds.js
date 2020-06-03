@@ -12,12 +12,9 @@ import ErrorMessage from '../../UI/ErrorMessage/ErrorMessage'
 
 const BoardsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   grid-gap: 10px;
-`
-
-const Board = styled.div`
-  width: 100%;
 `
 
 const PublicTreds = () => {
@@ -33,11 +30,11 @@ const PublicTreds = () => {
 
   const renderBoards = boards =>
     Object.keys(boards).map((name, index) => (
-      <Board key={index}>
+      <div key={index} style={{ width: '100%' }}>
         <LinkBtn to={boards[name]} width='100%'>
           {name}
         </LinkBtn>
-      </Board>
+      </div>
     ))
 
   return (
