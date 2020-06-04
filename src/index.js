@@ -5,10 +5,17 @@ import { BrowserRouter } from 'react-router-dom'
 
 // redux
 import { createStore, applyMiddleware, compose } from 'redux'
-import reduxThunk from 'redux-thunk'
 import { Provider } from 'react-redux'
+
+import reduxThunk from 'redux-thunk'
+
+import createSagaMiddleware from 'redux-saga'
+
 // root reducer
 import rootReducer from './store/reducers/rootReducer'
+
+// saga
+import saga from './store/sagas/saga'
 
 import './index.sass'
 import App from './App'
@@ -19,7 +26,13 @@ const composeEnhancers =
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
     : compose
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(reduxThunk)))
+const sagaMiddleware = createSagaMiddleware()
+
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(reduxThunk, sagaMiddleware))
+)
+sagaMiddleware.run(saga)
 
 const app = (
   <Provider store={store}>

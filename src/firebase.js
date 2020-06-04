@@ -1,14 +1,26 @@
-import * as firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/database'
+
+const {
+  REACT_APP_FB_API_KEY,
+  REACT_APP_FB_AUTH_DOMAIN,
+  REACT_APP_FB_DATABASE_URL,
+  REACT_APP_FB_PROJECT_ID,
+  REACT_APP_FB_STORAGE_BUCKET,
+  REACT_APP_FB_MESSAGE_SENDER_ID,
+  REACT_APP_FB_APP_ID,
+  REACT_APP_FB_MEASUREMENT_ID
+} = process.env
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyBU2Ka_DIeRI7xrhGqBMN4dD3EdW3Ko0rM',
-  authDomain: 'justtwitt-a5e19.firebaseapp.com',
-  databaseURL: 'https://justtwitt-a5e19.firebaseio.com',
-  projectId: 'justtwitt-a5e19',
-  storageBucket: 'justtwitt-a5e19.appspot.com',
-  messagingSenderId: '1021811529481',
-  appId: '1:1021811529481:web:0150e430568926332825d8',
-  measurementId: 'G-P2825843LQ'
+  apiKey: REACT_APP_FB_API_KEY,
+  authDomain: REACT_APP_FB_AUTH_DOMAIN,
+  databaseURL: REACT_APP_FB_DATABASE_URL,
+  projectId: REACT_APP_FB_PROJECT_ID,
+  storageBucket: REACT_APP_FB_STORAGE_BUCKET,
+  messagingSenderId: REACT_APP_FB_MESSAGE_SENDER_ID,
+  appId: REACT_APP_FB_APP_ID,
+  measurementId: REACT_APP_FB_MEASUREMENT_ID
 }
 
 firebase.initializeApp(firebaseConfig)
