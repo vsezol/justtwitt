@@ -69,7 +69,7 @@ const initLimitText = text => {
   }
 }
 
-const Comment = props => {
+export default React.memo(props => {
   const [commentMode, setCommentMode] = useState(false)
 
   const [commentText, setCommentText] = useState(initLimitText(props.text))
@@ -117,6 +117,4 @@ const Comment = props => {
       </CommentInner>
     </CommentBlock>
   )
-}
-
-export default Comment
+})
