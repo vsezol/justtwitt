@@ -162,7 +162,7 @@ class Comments extends Component {
                 ></ScrollBtn>
               )}
             </ScrollBtnBlock>
-            <TredContainer>
+            <TredContainer style={{margin: 0}}>
               <CreateComment onSubmit={this.addCommentHamdler} />
             </TredContainer>
           </div>

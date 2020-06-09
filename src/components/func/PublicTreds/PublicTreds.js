@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react'
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 
-import { getBoardsList } from '../../../store/actions/publicTredsActionCreators'
+import {
+  getBoardsList,
+  startGetBoardsList
+} from '../../../store/actions/publicTredsActionCreators'
 
 import styled from 'styled-components'
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
@@ -26,6 +29,7 @@ const PublicTreds = () => {
 
   useEffect(() => {
     dispatch(getBoardsList())
+    return () => dispatch(startGetBoardsList())
   }, [dispatch])
 
   const renderBoards = boards =>

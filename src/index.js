@@ -15,7 +15,7 @@ import createSagaMiddleware from 'redux-saga'
 import rootReducer from './store/reducers/rootReducer'
 
 // saga
-import saga from './store/sagas/saga'
+import rootSaga from './store/sagas/rootSaga'
 
 import './index.sass'
 import App from './App'
@@ -32,7 +32,7 @@ const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(reduxThunk, sagaMiddleware))
 )
-sagaMiddleware.run(saga)
+sagaMiddleware.run(rootSaga)
 
 const app = (
   <Provider store={store}>

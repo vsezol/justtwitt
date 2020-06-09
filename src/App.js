@@ -5,7 +5,8 @@ import Layout from './hoc/Layout/Layout'
 
 import PopularTreds from './components/class/PopularTreds/PopularTreds'
 import TredWithComments from './hoc/TredWithComments/TredWithComments'
-import CreateTred from './components/class/CreateTred/CreateTred'
+import CreateTred from './components/func/CreateTred/CreateTred'
+import Board from './components/func/Board/Board'
 import PublicTreds from './components/func/PublicTreds/PublicTreds'
 
 import { minLg } from './styled/grid'
@@ -29,9 +30,11 @@ class App extends Component {
     const routes = (
       <Switch>
         <Route path='/' exact component={PopularTreds} />
+        
         <Route path='/public' exact component={PublicTreds} />
-        <Route path='/public/:board/:id' component={TredWithComments} />
-        <Route path='/public/:board/create' component={CreateTred} />
+        <Route path='/public/:board' exact component={Board} />
+        <Route path='/public/:board/create' exact component={CreateTred} />
+        <Route path='/public/:board/:id' exact component={TredWithComments} />
         {/* <Route path='/private' render={() => <h1>Private treds</h1>} /> */}
       </Switch>
     )

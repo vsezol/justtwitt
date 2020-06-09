@@ -6,7 +6,7 @@ import {
 
 import axios from '../../axios/customAxios'
 
-const startGetBoardsList = () => ({
+export const startGetBoardsList = () => ({
   type: START_GET_BOARDS_LIST
 })
 

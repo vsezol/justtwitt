@@ -30,7 +30,7 @@ class Tred extends Component {
     const { title, views, board, date, text, imgs } = this.props
 
     return (
-      <div style={{ marginTop: 10 }}>
+      <div>
         <TredContainer>
           <Title>{title}</Title>
           <Stats views={views} board={board} date={date} />
