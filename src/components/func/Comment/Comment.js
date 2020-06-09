@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 
 import replaceNlToBr from '../../../modules/replaceNlToBr/replaceNlToBr'
 import styled from 'styled-components'
@@ -106,7 +106,7 @@ export default React.memo(props => {
 
   return (
     <CommentBlock>
-      <Avatar src={getRandomAvatar()} />
+      <Avatar src={useMemo(() => getRandomAvatar(), [])} />
       <CommentInner onClick={toggleComment}>
         <CommentText>
           {/* {isBig && !commentMode
