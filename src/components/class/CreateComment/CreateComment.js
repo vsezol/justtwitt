@@ -21,6 +21,7 @@ const SendBtn = styled(Icon)`
 const CreateCommentBlock = styled.div`
   border: 2px solid ${({ theme }) => theme.scrollColor};
   transition: border 0.25s ease-in-out;
+  box-sizing: border-box;
   border-radius: 5px;
   width: 100%;
   display: flex;
@@ -33,7 +34,7 @@ const TextArea = styled(TextareaAutosize)`
   font-family: 'Roboto-Regular';
   box-sizing: border-box;
   resize: none;
-  padding: 10px;
+  padding: 10px 0px 10px 10px;
   width: 100%;
   border-radius: 5px;
   border: 0px;
