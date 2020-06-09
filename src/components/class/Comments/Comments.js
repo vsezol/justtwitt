@@ -28,7 +28,7 @@ const CommentsBlock = styled(TredContainer)`
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 50px;
-    background: ${({theme}) => theme.scrollColor};
+    background: ${({ theme }) => theme.scrollColor};
   }
 `
 
@@ -43,7 +43,7 @@ const ScrollBtn = styled(Icon)`
   bottom: 20px;
   left: calc(100% - 2.1rem - 10px);
   transition: color 0.25s;
-  color: ${({theme}) => theme.scrollColor};
+  color: ${({ theme }) => theme.scrollColor};
 `
 
 class Comments extends Component {
@@ -162,7 +162,7 @@ class Comments extends Component {
                 ></ScrollBtn>
               )}
             </ScrollBtnBlock>
-            <TredContainer style={{margin: 0}}>
+            <TredContainer padding='5px 0px 5px 5px' style={{ margin: 0 }}>
               <CreateComment onSubmit={this.addCommentHamdler} />
             </TredContainer>
           </div>

@@ -8,7 +8,7 @@ import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 
 const SendBtn = styled(Icon)`
-  padding: 3px;
+  padding: 5px;
   margin: 0px;
   font-size: 2.1rem;
   transition: opacity 0.25s ease-in-out;
@@ -19,9 +19,6 @@ const SendBtn = styled(Icon)`
 `
 
 const CreateCommentBlock = styled.div`
-  border: 2px solid ${({ theme }) => theme.scrollColor};
-  transition: border 0.25s ease-in-out;
-  border-radius: 5px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -33,13 +30,14 @@ const TextArea = styled(TextareaAutosize)`
   font-family: 'Roboto-Regular';
   box-sizing: border-box;
   resize: none;
-  padding: 10px;
+  padding: 10px 15px 10px 15px;
   width: 100%;
-  border-radius: 5px;
-  border: 0px;
+  border-radius: 20px;
+  border: 2px solid ${({ theme }) => theme.scrollColor};
   font-size: 1rem;
   background: ${({ theme }) => theme.tredBg};
   color: ${({ theme }) => theme.textColor};
+  overflow: hidden;
   &:active,
   &:focus,
   &:hover {
@@ -50,15 +48,6 @@ const TextArea = styled(TextareaAutosize)`
     font-family: 'Roboto-Regular';
     color: ${({ theme }) => theme.textColor};
   }
-  overflow: hidden;
-  // &::-webkit-scrollbar {
-  //   width: 5px;
-  //   background-color: transparent;
-  // }
-  // &::-webkit-scrollbar-thumb {
-  //   border-radius: 50px;
-  //   background: ${({ theme }) => theme.scrollColor};
-  // }
 `
 
 class CreateComment extends Component {
