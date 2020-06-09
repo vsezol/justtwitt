@@ -8,7 +8,7 @@ import { faChevronCircleRight } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
 
 const SendBtn = styled(Icon)`
-  padding: 3px;
+  padding: 5px;
   margin: 0px;
   font-size: 2.1rem;
   transition: opacity 0.25s ease-in-out;
