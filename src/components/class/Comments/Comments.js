@@ -9,7 +9,7 @@ import {
 
 import Comment from '../../func/Comment/Comment'
 import TredContainer from '../../UI/TredContainer/TredContainer'
-import CreateComment from '../CreateComment/CreateComment'
+import CreateComment from '../../func/CreateComment/CreateComment'
 
 import styled from 'styled-components'
 

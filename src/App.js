@@ -3,11 +3,11 @@ import { Switch, Route } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 import Layout from './hoc/Layout/Layout'
 
-import PopularTreds from './components/class/PopularTreds/PopularTreds'
-import TredWithComments from './hoc/TredWithComments/TredWithComments'
-import CreateTred from './components/func/CreateTred/CreateTred'
-import Board from './components/func/Board/Board'
-import PublicTreds from './components/func/PublicTreds/PublicTreds'
+import PopularTreds from './components/pages/PopularTreds/PopularTreds'
+import TredWithComments from './components/pages/TredWithComments/TredWithComments'
+import CreateTred from './components/pages/CreateTred/CreateTred'
+import Board from './components/pages/Board/Board'
+import PublicTreds from './components/pages/PublicTreds/PublicTreds'
 
 import { minLg } from './styled/grid'
 

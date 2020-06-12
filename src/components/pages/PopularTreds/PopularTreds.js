@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { getPopularTreds } from '../../../store/actions/popularTredsActionCreators'
 
 import Container from '../../../hoc/Container/Container'
-import MicroTred from '../Tred/MicroTred/MicroTred'
+import MicroTred from '../../class/Tred/MicroTred/MicroTred'
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 import PageTitle from '../../UI/PageTitle/PageTitle'
 
