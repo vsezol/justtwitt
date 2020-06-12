@@ -15,7 +15,8 @@ const handlers = {
   [SUCCESS_GET_TREDS_BB]: (state, payload) => ({
     ...state,
     treds: payload,
-    loading: false
+    loading: false,
+    error: false
   }),
   [ERROR_GET_TREDS_BB]: state => ({ ...state, error: true, loading: false }),
   DEFAULT: state => state

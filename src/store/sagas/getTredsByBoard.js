@@ -18,7 +18,7 @@ const getTredsBB = async board => {
     const response = await axios.get(
       `/treds/public.json?orderBy="board"&equalTo="${board}"`
     )
-    return response.data
+    return Object.entries(response.data)
   } catch {
     return false
   }
@@ -27,7 +27,7 @@ const getTredsBB = async board => {
 function* getTredsBBWorker(action) {
   yield put(startGetTredsBB())
   const response = yield call(getTredsBB, action.payload)
-  if (Object.keys(response).length !== 0 && !!response) {
+  if (!!response.length && !!response) {
     yield put(successGetTredsBB(response))
   } else {
     yield put(errorGetTredsBB())

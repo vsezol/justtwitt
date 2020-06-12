@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react'
-import PageTitle from '../../UI/PageTitle/PageTitle'
-import Container from '../../../hoc/Container/Container'
 
 import { useDispatch, useSelector } from 'react-redux'
+import { getTredsBB } from '../../../store/actions/tredsByBoard'
+
+import styled from 'styled-components'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons'
-import styled from 'styled-components'
+import Container from '../../../hoc/Container/Container'
+import PageTitle from '../../UI/PageTitle/PageTitle'
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 import ErrorMessage from '../../UI/ErrorMessage/ErrorMessage'
 
-import { getTredsBB } from '../../../store/actions/tredsByBoard'
+import renderMicroTreds from '../../../modules/renderMicroTreds/renderMicroTreds'
 
 const Icon = styled(FontAwesomeIcon)`
   margin-right: 5px;
@@ -34,12 +36,16 @@ const Board = props => {
         <Icon icon={faNewspaper}></Icon>
         {boardName}
       </PageTitle>
-      {loading ? <LoaderContainer /> : null}
-      {error ? (
+
+      {loading ? (
+        <LoaderContainer />
+      ) : error ? (
         <ErrorMessage>
           Здесь нет ни одного треда <b>;(</b>
         </ErrorMessage>
-      ) : null}
+      ) : (
+        renderMicroTreds(treds)
+      )}
     </Container>
   )
 }
