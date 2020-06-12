@@ -4,30 +4,20 @@ import { connect } from 'react-redux'
 import { getPopularTreds } from '../../../store/actions/popularTredsActionCreators'
 
 import Container from '../../../hoc/Container/Container'
-import MicroTred from '../../class/Tred/MicroTred/MicroTred'
 import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
 import PageTitle from '../../UI/PageTitle/PageTitle'
+
+import renderMicroTreds from '../../../modules/renderMicroTreds/renderMicroTreds'
 
 class PopularTreds extends Component {
   componentDidMount = async () => this.props.getPopularTreds()
 
-  renderTreds = treds => {
-    return treds.map((tred, index) => {
-      const id = tred[0]
-      const data = tred[1]
-      return <MicroTred key={index} tred={{ id, ...data }} />
-    })
-  }
-
   render() {
+    const { loading, treds } = this.props
     return (
       <Container>
         <PageTitle>Популярные треды</PageTitle>
-        {this.props.loading ? (
-          <LoaderContainer />
-        ) : (
-          this.renderTreds(this.props.treds)
-        )}
+        {loading ? <LoaderContainer /> : renderMicroTreds(treds)}
       </Container>
     )
   }

@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import PageTitle from '../../UI/PageTitle/PageTitle'
 import Container from '../../../hoc/Container/Container'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
+import LoaderContainer from '../../UI/LoaderContainer/LoaderContainer'
+import ErrorMessage from '../../UI/ErrorMessage/ErrorMessage'
 
 import { getTredsBB } from '../../../store/actions/tredsByBoard'
 
@@ -18,10 +20,12 @@ const Icon = styled(FontAwesomeIcon)`
 const Board = props => {
   const boardName = props.match.params.board
 
+  const { loading, treds, error } = useSelector(state => state.board)
+
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getTredsBB())
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    dispatch(getTredsBB(boardName))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
@@ -30,6 +34,12 @@ const Board = props => {
         <Icon icon={faNewspaper}></Icon>
         {boardName}
       </PageTitle>
+      {loading ? <LoaderContainer /> : null}
+      {error ? (
+        <ErrorMessage>
+          Здесь нет ни одного треда <b>;(</b>
+        </ErrorMessage>
+      ) : null}
     </Container>
   )
 }

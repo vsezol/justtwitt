@@ -50,7 +50,7 @@ const PublicTreds = () => {
         <BoardsGrid>
           {error ? (
             <ErrorMessage>
-              Something is wrong <b>;(</b>
+              Что-то пошло не так <b>;(</b>
             </ErrorMessage>
           ) : (
             renderBoards(boardsList)

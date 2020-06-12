@@ -5,8 +5,9 @@ import {
   ERROR_GET_TREDS_BB
 } from './actionTypes'
 
-export const getTredsBB = () => ({
-  type: GET_TREDS_BB
+export const getTredsBB = payload => ({
+  type: GET_TREDS_BB,
+  payload
 })
 
 export const startGetTredsBB = () => ({
