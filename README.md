@@ -1,4 +1,4 @@
-# JustTwitt (pre-alpha v0.1.4.2)
+# JustTwitt (pre-alpha v0.1.5)
 
 You can test this
 <b>pre-alpha</b>
@@ -13,6 +13,10 @@ You can test this
 ## v0.1.4
 1. color theme saving
 2. fix micro bugs
+## v0.1.5
+1. add public treds
+2. add boards
+3. fix bugs
 
 
 Thanks for testing!
