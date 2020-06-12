@@ -68,7 +68,7 @@ const LinkAlt = styled.span`
   }
 `
 
-const Navbar = () => {
+const Navbar = props => {
   const links = [
     {
       to: '/',
@@ -92,21 +92,18 @@ const Navbar = () => {
   const onChangeThemeHandler = event => {
     const newThemeType = event.target.value
     dispatch({ type: newThemeType })
-  } 
+  }
 
   return (
     <Nav>
       <NavContainer>
         {links.map(({ to, icon, text }, index) => (
-          <NavbarLink key={index} exact to={to} activeClassName='active'>
+          <NavbarLink key={index} to={to} activeClassName='active'>
             <LinkIcon icon={icon}></LinkIcon>
             <LinkAlt>&nbsp;{text}</LinkAlt>
           </NavbarLink>
         ))}
-        <Select
-          options={themes}
-          onChange={onChangeThemeHandler}
-        ></Select>
+        <Select options={themes} onChange={onChangeThemeHandler}></Select>
       </NavContainer>
     </Nav>
   )
